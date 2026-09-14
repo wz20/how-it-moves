@@ -1,0 +1,55 @@
+name: Render illustrated showcase
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'technical-animation/runtime/studio-art.mjs'
+      - 'technical-animation/runtime/illustrated-player.mjs'
+      - 'technical-animation/scripts/illustrate.py'
+      - 'technical-animation/scripts/validate.py'
+      - 'technical-animation/tests/test_illustrate.py'
+      - 'technical-animation/tests/check_illustrated.py'
+      - 'scripts/render_illustrated_showcase.py'
+      - '.github/workflows/illustrated-showcase.yml'
+permissions:
+  contents: write
+concurrency:
+  group: illustrated-showcase
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install rendering dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          python -m pip install -r technical-animation/requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Render and verify all three illustrated videos
+        run: python scripts/render_illustrated_showcase.py
+      - name: Regression tests
+        run: |
+          python -m unittest discover -s technical-animation/tests -v
+          python -m unittest discover -s tests -v
+          node technical-animation/tests/test_motion.mjs
+          node technical-animation/tests/test_editorial.mjs
+          python scripts/check_release.py
+      - name: Publish only generated showcase and documentation
+        run: |
+          git fetch origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" || { echo 'Main moved; rerun on latest main, no force push.'; exit 1; }
+          git add docs/illustrated README.md README.en.md technical-animation/SKILL.md technical-animation/manifest.sha256.json release-files.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs: publish three verified illustrated-studio videos'
+          git push origin HEAD:main

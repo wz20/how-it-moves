@@ -7,7 +7,14 @@ from typing import Any
 
 def validate_project(data: dict[str, Any]) -> list[str]:
     errors: list[str] = []
-    if isinstance(data,dict) and 'recipe' in data:
+    if isinstance(data,dict) and data.get('presentation') == 'illustrated-studio':
+        from illustrate import compile_illustrated
+        try:
+            if data != compile_illustrated(data['input_spec']):
+                errors.append('E_CONTRACT: illustrated source, art or events changed; rebuild')
+        except (KeyError, ValueError, TypeError):
+            errors.append('E_CONTRACT: invalid illustrated input')
+    elif isinstance(data,dict) and 'recipe' in data:
         from recipe_core import validate_compiled
         errors.extend(e['code']+': '+e['message'] for e in validate_compiled(data))
     if data.get('ready_for_render') is False:errors.append('draft project: ready_for_render must be explicitly enabled after scene authoring')
