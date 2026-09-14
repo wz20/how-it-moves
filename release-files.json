@@ -156,6 +156,7 @@
     "technical-animation/tests/test_recipes.py": "5dffe05e52ccbe8450e408272a23e9ee449207eccece1eec2faf7966f2f98892",
     "technical-animation/tests/test_validate.py": "3f2d5b8a8d110ef7e977b3e1171c86e786c543c332b83cdc2a07283eb1333460",
     "tests/test_publication.py": "f408e5847110c2b00d5a1b24e232cbb775dde245ac8da37f8408abaa96b5353f",
+    "tests/test_directed_publication.py": "17a0bdd78512a6e05c252ff0ce116b1fddbd7746e6030ef0822590d92939bad0",
     "docs/directed-runtime/motion.mjs": "d716408a6ae011f44957f666eea51ebc0e5a1f71e8cceea038beaa92cafee3d2",
     "docs/directed-runtime/editorial.mjs": "d5bd4b60bbcd34902922a4cacfeb7e7e2b158ba9b0fd4e66b273190024c83cf3",
     "docs/directed-runtime/partition-search.mjs": "c83065d4edbe44527fc367c4efbcf71fa29a42e46d3491ad825bb4835882fcce"
