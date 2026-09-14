@@ -1,0 +1,189 @@
+{
+  "causal_boundary_checks": 11,
+  "checks": [
+    {
+      "frame": 120,
+      "expected": {
+        "tool": "idle",
+        "feedbackReceived": false
+      },
+      "observed": {
+        "frame": 120,
+        "t": 2,
+        "phase": 1,
+        "tool": "idle",
+        "working": false,
+        "patched": false,
+        "feedbackReceived": false,
+        "done": false
+      }
+    },
+    {
+      "frame": 123,
+      "expected": {
+        "tool": "running"
+      },
+      "observed": {
+        "frame": 123,
+        "t": 2.05,
+        "phase": 1,
+        "tool": "running",
+        "working": true,
+        "patched": false,
+        "feedbackReceived": false,
+        "done": false
+      }
+    },
+    {
+      "frame": 162,
+      "expected": {
+        "tool": "fail"
+      },
+      "observed": {
+        "frame": 162,
+        "t": 2.7,
+        "phase": 2,
+        "tool": "fail",
+        "working": false,
+        "patched": false,
+        "feedbackReceived": false,
+        "done": false
+      }
+    },
+    {
+      "frame": 209,
+      "expected": {
+        "feedbackReceived": false
+      },
+      "observed": {
+        "frame": 209,
+        "t": 3.4833333333333334,
+        "phase": 2,
+        "tool": "fail",
+        "working": false,
+        "patched": false,
+        "feedbackReceived": false,
+        "done": false
+      }
+    },
+    {
+      "frame": 210,
+      "expected": {
+        "feedbackReceived": true
+      },
+      "observed": {
+        "frame": 210,
+        "t": 3.5,
+        "phase": 2,
+        "tool": "fail",
+        "working": false,
+        "patched": false,
+        "feedbackReceived": true,
+        "done": false
+      }
+    },
+    {
+      "frame": 308,
+      "expected": {
+        "patched": false
+      },
+      "observed": {
+        "frame": 308,
+        "t": 5.133333333333334,
+        "phase": 3,
+        "tool": "fail",
+        "working": false,
+        "patched": false,
+        "feedbackReceived": true,
+        "done": false
+      }
+    },
+    {
+      "frame": 309,
+      "expected": {
+        "patched": true
+      },
+      "observed": {
+        "frame": 309,
+        "t": 5.15,
+        "phase": 3,
+        "tool": "patch",
+        "working": true,
+        "patched": true,
+        "feedbackReceived": true,
+        "done": false
+      }
+    },
+    {
+      "frame": 404,
+      "expected": {
+        "tool": "running"
+      },
+      "observed": {
+        "frame": 404,
+        "t": 6.733333333333333,
+        "phase": 3,
+        "tool": "running",
+        "working": true,
+        "patched": true,
+        "feedbackReceived": true,
+        "done": false
+      }
+    },
+    {
+      "frame": 405,
+      "expected": {
+        "tool": "pass"
+      },
+      "observed": {
+        "frame": 405,
+        "t": 6.75,
+        "phase": 4,
+        "tool": "pass",
+        "working": false,
+        "patched": true,
+        "feedbackReceived": true,
+        "done": false
+      }
+    },
+    {
+      "frame": 446,
+      "expected": {
+        "done": false
+      },
+      "observed": {
+        "frame": 446,
+        "t": 7.433333333333334,
+        "phase": 4,
+        "tool": "pass",
+        "working": false,
+        "patched": true,
+        "feedbackReceived": true,
+        "done": false
+      }
+    },
+    {
+      "frame": 480,
+      "expected": {
+        "done": true
+      },
+      "observed": {
+        "frame": 480,
+        "t": 8,
+        "phase": 4,
+        "tool": "pass",
+        "working": false,
+        "patched": true,
+        "feedbackReceived": true,
+        "done": true
+      }
+    }
+  ],
+  "playback_advance": [
+    26,
+    53
+  ],
+  "scrubber_frame": 480,
+  "browser_errors": [],
+  "status": "pass"
+}

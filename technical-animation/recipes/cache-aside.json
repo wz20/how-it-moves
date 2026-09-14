@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "duration": 14,
+  "fps": 60,
+  "style": "comic-lab",
+  "aspect": "16:9",
+  "audio": "none",
+  "recipe": "cache-aside",
+  "title": "缓存：第一次慢，第二次快",
+  "takeaway": "未命中回源，命中直接返回",
+  "content": {
+    "request": "读取用户42",
+    "key": "user:42",
+    "value": "Ada"
+  }
+}

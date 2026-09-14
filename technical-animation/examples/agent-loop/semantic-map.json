@@ -1,0 +1,16 @@
+{
+  "entities": [
+    {"id":"user","meaning":"explicit goal","shape":"task ticket"},
+    {"id":"model","meaning":"LLM selects next action from current context","shape":"original orange robot; does not alone equal the whole Agent"},
+    {"id":"tool","meaning":"runtime executes selected code/test operations","shape":"teal execution machine"},
+    {"id":"context","meaning":"tool observations available for the next decision","shape":"receipt stack; not model weights"}
+  ],
+  "relationships": [
+    {"from":"user","to":"model","meaning":"task"},
+    {"from":"model","to":"tool","meaning":"command/arguments","direction":"outgoing upper curve"},
+    {"from":"tool","to":"model","meaning":"observation returned to context","direction":"return lower curve"}
+  ],
+  "state_changes": ["idle → test selected → tool runs → fail returned → context updated → patch selected → patch applied → test selected → pass returned → goal checked → stop"],
+  "stopping_condition":"received test result satisfies the explicit toy goal",
+  "simplifications":["scripted mechanism illustration, not a live model recording","one executor depicts separate patch and test tool capabilities","one failing test does not validate all program correctness","universal retries and automatic self-training are not implied"]
+}

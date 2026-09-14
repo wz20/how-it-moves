@@ -1,0 +1,1 @@
+PASS: deterministic motion primitives / endpoints / seeded randomness

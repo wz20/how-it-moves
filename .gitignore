@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+build/
+.DS_Store
+.env
+.env.*
+*.pem
+*.key
+*.ttf
+*.otf
+*.ttc
+*.woff
+*.woff2
+work/

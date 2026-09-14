@@ -1,0 +1,274 @@
+{
+  "scope": "Local publication preparation. No GitHub write API or authenticated git session was available. Remote publication NOT executed.",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "technical-animation/tests"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "command": [
+        "node",
+        "technical-animation/tests/test_motion.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: deterministic motion primitives / endpoints / seeded randomness\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "...........\n----------------------------------------------------------------------\nRan 11 tests in 0.005s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "technical-animation/scripts/validate.py",
+        "technical-animation/examples/agent-loop"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: Agent：把反馈变成下一步行动; 600 frames; event causality and asset metadata valid\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "technical-animation/scripts/bundle.py",
+        "technical-animation/examples/agent-loop",
+        "--out",
+        "<temporary-preview.html>"
+      ],
+      "exit_code": 0,
+      "stdout": "<temporary-preview.html>\n",
+      "stderr": ""
+    }
+  ],
+  "demo_html_sha256": "0a78f5c20e4a80c0df4b9a74b509e9ae7b75b7fc3608bb8d4db8cd4d456b1012",
+  "html_matches_approved_original_and_rebuilt_source": true,
+  "unchanged_scene_runtime_skill_reference_files": 11,
+  "browser": {
+    "status": "pass",
+    "causal_boundaries": [
+      {
+        "frame": 120,
+        "expected": {
+          "tool": "idle",
+          "feedbackReceived": false
+        },
+        "observed": {
+          "frame": 120,
+          "t": 2,
+          "phase": 1,
+          "tool": "idle",
+          "working": false,
+          "patched": false,
+          "feedbackReceived": false,
+          "done": false
+        }
+      },
+      {
+        "frame": 123,
+        "expected": {
+          "tool": "running"
+        },
+        "observed": {
+          "frame": 123,
+          "t": 2.05,
+          "phase": 1,
+          "tool": "running",
+          "working": true,
+          "patched": false,
+          "feedbackReceived": false,
+          "done": false
+        }
+      },
+      {
+        "frame": 162,
+        "expected": {
+          "tool": "fail"
+        },
+        "observed": {
+          "frame": 162,
+          "t": 2.7,
+          "phase": 2,
+          "tool": "fail",
+          "working": false,
+          "patched": false,
+          "feedbackReceived": false,
+          "done": false
+        }
+      },
+      {
+        "frame": 209,
+        "expected": {
+          "feedbackReceived": false
+        },
+        "observed": {
+          "frame": 209,
+          "t": 3.4833333333333334,
+          "phase": 2,
+          "tool": "fail",
+          "working": false,
+          "patched": false,
+          "feedbackReceived": false,
+          "done": false
+        }
+      },
+      {
+        "frame": 210,
+        "expected": {
+          "feedbackReceived": true
+        },
+        "observed": {
+          "frame": 210,
+          "t": 3.5,
+          "phase": 2,
+          "tool": "fail",
+          "working": false,
+          "patched": false,
+          "feedbackReceived": true,
+          "done": false
+        }
+      },
+      {
+        "frame": 308,
+        "expected": {
+          "patched": false
+        },
+        "observed": {
+          "frame": 308,
+          "t": 5.133333333333334,
+          "phase": 3,
+          "tool": "fail",
+          "working": false,
+          "patched": false,
+          "feedbackReceived": true,
+          "done": false
+        }
+      },
+      {
+        "frame": 309,
+        "expected": {
+          "patched": true
+        },
+        "observed": {
+          "frame": 309,
+          "t": 5.15,
+          "phase": 3,
+          "tool": "patch",
+          "working": true,
+          "patched": true,
+          "feedbackReceived": true,
+          "done": false
+        }
+      },
+      {
+        "frame": 404,
+        "expected": {
+          "tool": "running"
+        },
+        "observed": {
+          "frame": 404,
+          "t": 6.733333333333333,
+          "phase": 3,
+          "tool": "running",
+          "working": true,
+          "patched": true,
+          "feedbackReceived": true,
+          "done": false
+        }
+      },
+      {
+        "frame": 405,
+        "expected": {
+          "tool": "pass"
+        },
+        "observed": {
+          "frame": 405,
+          "t": 6.75,
+          "phase": 4,
+          "tool": "pass",
+          "working": false,
+          "patched": true,
+          "feedbackReceived": true,
+          "done": false
+        }
+      },
+      {
+        "frame": 446,
+        "expected": {
+          "done": false
+        },
+        "observed": {
+          "frame": 446,
+          "t": 7.433333333333334,
+          "phase": 4,
+          "tool": "pass",
+          "working": false,
+          "patched": true,
+          "feedbackReceived": true,
+          "done": false
+        }
+      },
+      {
+        "frame": 480,
+        "expected": {
+          "done": true
+        },
+        "observed": {
+          "frame": 480,
+          "t": 8,
+          "phase": 4,
+          "tool": "pass",
+          "working": false,
+          "patched": true,
+          "feedbackReceived": true,
+          "done": true
+        }
+      }
+    ],
+    "playback_frame_progress": [
+      27,
+      48
+    ],
+    "paused_frame": 51,
+    "scrubbed_frame": 480,
+    "random_access_repeat_identical": true,
+    "js_errors": [],
+    "http_requests": 0,
+    "loaded_via_file_scheme": false,
+    "load_method": "page.set_content, identical file bytes",
+    "navigation_limit": "file URL navigation is blocked by the managed browser policy; no policy changed"
+  },
+  "video": {
+    "duration": 10,
+    "fps": 60,
+    "decoded_frames": 600,
+    "width": 1920,
+    "height": 1080,
+    "audio_streams": 0,
+    "decode": "pass",
+    "sha256": "e4460f61bd7858a6bfa715975d096b2fdf963b22171c39dc521b327f05e5de51"
+  },
+  "environment": {
+    "python": "3.13.5",
+    "playwright": "1.57.0",
+    "platform": "Linux"
+  }
+}

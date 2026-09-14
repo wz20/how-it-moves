@@ -1,0 +1,2 @@
+PUBLICATION STOPPED: Missing gh. Install GitHub CLI from https://cli.github.com/ (macOS/Homebrew: brew install gh), then run gh auth login --hostname github.com --web.
+No force-push or repository deletion was performed. If the repository was already created, retain this directory; retry Pages with --pages-only or inspect git status.

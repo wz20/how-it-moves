@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {clamp,bezier,inv,spring,rng,easeInOut,keyframes} from '../runtime/motion.mjs';
+assert.equal(clamp(4),1);assert.equal(inv(2,1,3),.5);
+assert.deepEqual(bezier([[0,0],[1,0],[1,1],[2,2]],0),{x:0,y:0});
+assert.deepEqual(bezier([[0,0],[1,0],[1,1],[2,2]],1),{x:2,y:2});
+assert.equal(spring(-1),0);assert.ok(Math.abs(spring(2)-1)<.0001);
+assert.equal(easeInOut(0),0);assert.equal(easeInOut(1),1);
+assert.equal(keyframes(1,[[0,2],[2,4]]),3);
+const a=rng(3),b=rng(3);for(let i=0;i<100;i++)assert.equal(a(),b());
+console.log('PASS: deterministic motion primitives / endpoints / seeded randomness');

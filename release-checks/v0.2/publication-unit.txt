@@ -1,0 +1,16 @@
+test_existing_repo_not_overwritten (test_publication.PublicationTests.test_existing_repo_not_overwritten) ... ok
+test_font_file_rejected (test_publication.PublicationTests.test_font_file_rejected) ... ok
+test_identity_mismatch (test_publication.PublicationTests.test_identity_mismatch) ... ok
+test_noreply_email (test_publication.PublicationTests.test_noreply_email) ... ok
+test_only_explicit_404_means_missing (test_publication.PublicationTests.test_only_explicit_404_means_missing) ... ok
+test_public_consent_required (test_publication.PublicationTests.test_public_consent_required) ... ok
+test_secret_file_rejected (test_publication.PublicationTests.test_secret_file_rejected) ... ok
+test_source_tree_is_preserved (test_publication.PublicationTests.test_source_tree_is_preserved) ... ok
+test_symlink_rejected (test_publication.PublicationTests.test_symlink_rejected) ... ok
+test_unsafe_slug_rejected (test_publication.PublicationTests.test_unsafe_slug_rejected) ... ok
+test_valid_slug (test_publication.PublicationTests.test_valid_slug) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.006s
+
+OK

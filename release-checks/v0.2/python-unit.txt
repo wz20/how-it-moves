@@ -1,0 +1,55 @@
+test_init_refuses_existing (test_recipe_cli.CLITests.test_init_refuses_existing) ... ok
+test_invalid_writes_nothing (test_recipe_cli.CLITests.test_invalid_writes_nothing) ... ok
+test_list (test_recipe_cli.CLITests.test_list) ... ok
+test_no_overwrite (test_recipe_cli.CLITests.test_no_overwrite) ... ok
+test_portable_build (test_recipe_cli.CLITests.test_portable_build) ... ok
+test_tampered_contract_check (test_recipe_cli.CLITests.test_tampered_contract_check) ... ok
+test_browser_checker_has_portable_help (test_recipe_release.RecipeReleaseTests.test_browser_checker_has_portable_help) ... ok
+test_content_changes_do_not_require_scene_edits (test_recipe_release.RecipeReleaseTests.test_content_changes_do_not_require_scene_edits) ... ok
+test_duplicate_json_key_not_silently_accepted (test_recipe_release.RecipeReleaseTests.test_duplicate_json_key_not_silently_accepted) ... ok
+test_malformed_manifest_returns_structured_error (test_recipe_release.RecipeReleaseTests.test_malformed_manifest_returns_structured_error) ... ok
+test_readme_json_examples_pass (test_recipe_release.RecipeReleaseTests.test_readme_json_examples_pass) ... ok
+test_script_end_tag_is_escaped_in_standalone_html (test_recipe_release.RecipeReleaseTests.test_script_end_tag_is_escaped_in_standalone_html) ... ok
+test_three_init_outputs_are_valid_without_agent_code (test_recipe_release.RecipeReleaseTests.test_three_init_outputs_are_valid_without_agent_code) ... ok
+test_all_three_compile (test_recipes.RecipeTests.test_all_three_compile) ... ok
+test_audio_not_silently_dropped (test_recipes.RecipeTests.test_audio_not_silently_dropped) ... ok
+test_bad_nested_type (test_recipes.RecipeTests.test_bad_nested_type) ... ok
+test_bool_is_not_duration (test_recipes.RecipeTests.test_bool_is_not_duration) ... ok
+test_bounds_and_holds (test_recipes.RecipeTests.test_bounds_and_holds) ... ok
+test_cache_only_one_database_read (test_recipes.RecipeTests.test_cache_only_one_database_read) ... ok
+test_citation_must_have_been_retrieved (test_recipes.RecipeTests.test_citation_must_have_been_retrieved) ... ok
+test_contract_roundtrip_deterministic (test_recipes.RecipeTests.test_contract_roundtrip_deterministic) ... ok
+test_contract_tampering_rejected (test_recipes.RecipeTests.test_contract_tampering_rejected) ... ok
+test_duplicate_evidence_id (test_recipes.RecipeTests.test_duplicate_evidence_id) ... ok
+test_errors_have_field_and_hint (test_recipes.RecipeTests.test_errors_have_field_and_hint) ... ok
+test_failure_success_distinct (test_recipes.RecipeTests.test_failure_success_distinct) ... ok
+test_long_duration_rejected (test_recipes.RecipeTests.test_long_duration_rejected) ... ok
+test_minimum_duration (test_recipes.RecipeTests.test_minimum_duration) ... ok
+test_missing_selected_evidence (test_recipes.RecipeTests.test_missing_selected_evidence) ... ok
+test_nan_is_not_duration (test_recipes.RecipeTests.test_nan_is_not_duration) ... ok
+test_no_control_characters (test_recipes.RecipeTests.test_no_control_characters) ... ok
+test_no_freeform_timing (test_recipes.RecipeTests.test_no_freeform_timing) ... ok
+test_no_side_effect_before_arrival (test_recipes.RecipeTests.test_no_side_effect_before_arrival) ... ok
+test_only_supported_aspect (test_recipes.RecipeTests.test_only_supported_aspect) ... ok
+test_overlong_title (test_recipes.RecipeTests.test_overlong_title) ... ok
+test_rag_evidence_before_generation (test_recipes.RecipeTests.test_rag_evidence_before_generation) ... ok
+test_retry_and_stop (test_recipes.RecipeTests.test_retry_and_stop) ... ok
+test_same_code_not_a_patch (test_recipes.RecipeTests.test_same_code_not_a_patch) ... ok
+test_selected_must_be_boolean (test_recipes.RecipeTests.test_selected_must_be_boolean) ... ok
+test_unknown_key (test_recipes.RecipeTests.test_unknown_key) ... ok
+test_unknown_recipe (test_recipes.RecipeTests.test_unknown_recipe) ... ok
+test_unknown_style_rejected (test_recipes.RecipeTests.test_unknown_style_rejected) ... ok
+test_draft_blocked (test_validate.Tests.test_draft_blocked) ... ok
+test_early_result (test_validate.Tests.test_early_result) ... ok
+test_fractional_frames (test_validate.Tests.test_fractional_frames) ... ok
+test_good (test_validate.Tests.test_good) ... ok
+test_missing_feedback (test_validate.Tests.test_missing_feedback) ... ok
+test_no_path_traversal (test_validate.Tests.test_no_path_traversal) ... ok
+test_overrun (test_validate.Tests.test_overrun) ... ok
+test_rejected_asset (test_validate.Tests.test_rejected_asset) ... ok
+test_unknown_cause (test_validate.Tests.test_unknown_cause) ... ok
+
+----------------------------------------------------------------------
+Ran 50 tests in 17.955s
+
+OK

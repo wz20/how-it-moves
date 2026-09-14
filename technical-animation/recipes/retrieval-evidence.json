@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "duration": 12,
+  "fps": 60,
+  "style": "comic-lab",
+  "aspect": "16:9",
+  "audio": "none",
+  "recipe": "retrieval-evidence",
+  "title": "RAG：先找证据，再回答",
+  "takeaway": "检索提供上下文，不是训练",
+  "content": {
+    "question": "退款需要几天？",
+    "documents": [
+      {
+        "id": "D1",
+        "text": "审核需要1天",
+        "selected": true
+      },
+      {
+        "id": "D2",
+        "text": "运费按地区计算",
+        "selected": false
+      },
+      {
+        "id": "D3",
+        "text": "退款到账需3天",
+        "selected": true
+      }
+    ],
+    "answer": "审核1天，到账3天",
+    "citations": [
+      "D1",
+      "D3"
+    ]
+  }
+}

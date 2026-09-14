@@ -1,0 +1,20 @@
+{
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 60,
+  "duration": 10,
+  "frames": 600,
+  "audio": "none",
+  "bytes": 533955,
+  "sha256": "047e1607e927582592a3541411eb649229e594e90054eadca7587ac25421a014",
+  "decode": "pass",
+  "blackEvents": [],
+  "normalSpeedHumanReview": "unverified",
+  "notes": [
+    "Original vector mechanism illustration, not a live execution capture.",
+    "Global freeze detection flags reading holds and small moving areas.",
+    "No audience comprehension evaluation."
+  ]
+}

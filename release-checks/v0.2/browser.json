@@ -1,0 +1,56 @@
+{
+  "ok": true,
+  "loading_mode": "self-contained HTML via page.set_content",
+  "scope": "fixture rendering and state parity; NOT an LLM benchmark or audience study",
+  "frames_checked": 96,
+  "recipes": [
+    {
+      "recipe": "feedback-retry",
+      "frames_checked": 36,
+      "semantic_match": true,
+      "deterministic_seek": true,
+      "play_pause_seek": true,
+      "browser_errors": [],
+      "external_requests": [],
+      "screenshots": [
+        "feedback-retry/frame-0145.png",
+        "feedback-retry/frame-0264.png",
+        "feedback-retry/frame-0373.png",
+        "feedback-retry/frame-0470.png",
+        "feedback-retry/frame-0576.png",
+        "feedback-retry/frame-0660.png"
+      ]
+    },
+    {
+      "recipe": "retrieval-evidence",
+      "frames_checked": 24,
+      "semantic_match": true,
+      "deterministic_seek": true,
+      "play_pause_seek": true,
+      "browser_errors": [],
+      "external_requests": [],
+      "screenshots": [
+        "retrieval-evidence/frame-0195.png",
+        "retrieval-evidence/frame-0279.png",
+        "retrieval-evidence/frame-0464.png",
+        "retrieval-evidence/frame-0660.png"
+      ]
+    },
+    {
+      "recipe": "cache-aside",
+      "frames_checked": 36,
+      "semantic_match": true,
+      "deterministic_seek": true,
+      "play_pause_seek": true,
+      "browser_errors": [],
+      "external_requests": [],
+      "screenshots": [
+        "cache-aside/frame-0101.png",
+        "cache-aside/frame-0298.png",
+        "cache-aside/frame-0497.png",
+        "cache-aside/frame-0623.png",
+        "cache-aside/frame-0780.png"
+      ]
+    }
+  ]
+}

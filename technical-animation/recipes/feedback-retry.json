@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "duration": 12,
+  "fps": 60,
+  "style": "comic-lab",
+  "aspect": "16:9",
+  "audio": "none",
+  "recipe": "feedback-retry",
+  "title": "Agent：反馈改变下一步",
+  "takeaway": "先看反馈，再决定下一步",
+  "content": {
+    "goal": "让测试通过",
+    "action": "TEST",
+    "failure": "FAIL",
+    "adjustment": "PATCH",
+    "success": "PASS",
+    "before": "return a - b",
+    "after": "return a + b",
+    "decision": "报错指出减号写错"
+  }
+}

@@ -1,0 +1,257 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+======================================================================
+FAIL: test_all_three_compile (test_recipes.RecipeTests.test_all_three_compile)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_audio_not_silently_dropped (test_recipes.RecipeTests.test_audio_not_silently_dropped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_bad_nested_type (test_recipes.RecipeTests.test_bad_nested_type)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_bool_is_not_duration (test_recipes.RecipeTests.test_bool_is_not_duration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_bounds_and_holds (test_recipes.RecipeTests.test_bounds_and_holds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_cache_only_one_database_read (test_recipes.RecipeTests.test_cache_only_one_database_read)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_citation_must_have_been_retrieved (test_recipes.RecipeTests.test_citation_must_have_been_retrieved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_contract_roundtrip_deterministic (test_recipes.RecipeTests.test_contract_roundtrip_deterministic)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_contract_tampering_rejected (test_recipes.RecipeTests.test_contract_tampering_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_duplicate_evidence_id (test_recipes.RecipeTests.test_duplicate_evidence_id)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_errors_have_field_and_hint (test_recipes.RecipeTests.test_errors_have_field_and_hint)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_failure_success_distinct (test_recipes.RecipeTests.test_failure_success_distinct)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_long_duration_rejected (test_recipes.RecipeTests.test_long_duration_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_minimum_duration (test_recipes.RecipeTests.test_minimum_duration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_missing_selected_evidence (test_recipes.RecipeTests.test_missing_selected_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_nan_is_not_duration (test_recipes.RecipeTests.test_nan_is_not_duration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_no_control_characters (test_recipes.RecipeTests.test_no_control_characters)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_no_freeform_timing (test_recipes.RecipeTests.test_no_freeform_timing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_no_side_effect_before_arrival (test_recipes.RecipeTests.test_no_side_effect_before_arrival)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_only_supported_aspect (test_recipes.RecipeTests.test_only_supported_aspect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_overlong_title (test_recipes.RecipeTests.test_overlong_title)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_rag_evidence_before_generation (test_recipes.RecipeTests.test_rag_evidence_before_generation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_retry_and_stop (test_recipes.RecipeTests.test_retry_and_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_same_code_not_a_patch (test_recipes.RecipeTests.test_same_code_not_a_patch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_selected_must_be_boolean (test_recipes.RecipeTests.test_selected_must_be_boolean)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_unknown_key (test_recipes.RecipeTests.test_unknown_key)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_unknown_recipe (test_recipes.RecipeTests.test_unknown_recipe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+======================================================================
+FAIL: test_unknown_style_rejected (test_recipes.RecipeTests.test_unknown_style_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipes.py", line 13, in setUp
+    self.assertIsNotNone(core,'Recipe compiler is missing: users still have to write scene code')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : Recipe compiler is missing: users still have to write scene code
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.005s
+
+FAILED (failures=28)

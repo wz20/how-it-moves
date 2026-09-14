@@ -1,0 +1,190 @@
+# How It Moves
+
+**Models supply content. Recipes supply the animation.**
+
+[中文](README.md) · [Original interactive demo](docs/index.html) · [Recipe gallery](docs/recipes/index.html) · [Skill](technical-animation/SKILL.md) · [MIT](LICENSE)
+
+[![Original 10-second Agent animation](docs/media/agent-loop.gif)](https://wz20.github.io/how-it-moves/)
+
+The original HTML and MP4 are preserved byte-for-byte. GitHub displays HTML source; open it locally in a browser, or enable GitHub Pages (`main:/docs`). An intended Pages URL is not evidence of a completed deployment.
+
+Formerly Explain Motion. The installable Skill directory remains `technical-animation`; existing renders retain their original labels for reproducibility.
+
+[Original 1080p60 MP4](docs/media/agent-loop-10s.mp4)
+
+## Animation showcase
+
+Every completed example is shown in this README: the original Agent animation is above, and the remaining examples are below. GIFs are compressed previews; MP4s retain the rendered resolution and duration.
+
+### DeepSeek Harness: how plugins work · 10s
+
+[![DeepSeek Harness: how plugins work](docs/media/deepseek-plugins.gif)](https://wz20.github.io/how-it-moves/deepseek-plugins.html)
+
+Advanced mode: mount → register → call and return → unload and clean up.
+
+[▶ Interactive preview](https://wz20.github.io/how-it-moves/deepseek-plugins.html) · [MP4](docs/media/deepseek-plugins.mp4)
+
+### Feedback and retry · 12s
+
+[![Feedback and retry](docs/recipes/media/feedback-retry.gif)](https://wz20.github.io/how-it-moves/recipes/feedback-retry.html)
+
+Failure → feedback → repair → verify → stop.
+
+[▶ Interactive preview](https://wz20.github.io/how-it-moves/recipes/feedback-retry.html) · [MP4](docs/recipes/media/feedback-retry.mp4)
+
+### Retrieval and evidence · 12s
+
+[![Retrieval and evidence](docs/recipes/media/retrieval-evidence.gif)](https://wz20.github.io/how-it-moves/recipes/retrieval-evidence.html)
+
+Retrieve → select evidence → build context → cite.
+
+[▶ Interactive preview](https://wz20.github.io/how-it-moves/recipes/retrieval-evidence.html) · [MP4](docs/recipes/media/retrieval-evidence.mp4)
+
+### Cache miss and hit · 14s
+
+[![Cache miss and hit](docs/recipes/media/cache-aside.gif)](https://wz20.github.io/how-it-moves/recipes/cache-aside.html)
+
+The application loads the origin, fills the cache, and hits it on the next read.
+
+[▶ Interactive preview](https://wz20.github.io/how-it-moves/recipes/cache-aside.html) · [MP4](docs/recipes/media/cache-aside.mp4)
+
+<details>
+<summary>Supplement: DeepSeek call/return motion test · 3s</summary>
+
+![DeepSeek motion test](docs/media/deepseek-plugins-action-test.gif)
+
+[MP4](docs/media/deepseek-plugins-action-test.mp4)
+
+</details>
+
+The DeepSeek [editable project](technical-animation/examples/deepseek-plugins/) and [verification limits](technical-animation/examples/deepseek-plugins/README.md) are included. It is an advanced-mode example, not a new generic recipe. All examples are silent mechanism illustrations, not live execution recordings; no audience study has been performed.
+
+On a Chrome connection failure or permission block, the Skill switches directly to the host’s built-in browser. Preview and MP4 export capabilities are checked separately.
+
+## What changed
+
+v0.1 asked the host agent to design and implement `scene.mjs`. v0.2 defaults to bounded recipes: choose the right mechanism and edit a small JSON document. The compiler supplies layout, layered vector assets, articulated motions, integer-frame event scheduling, captions, and the final two-second reading hold.
+
+This removes model responsibility for animation engineering **inside supported mechanisms**. It does not make a model understand unfamiliar technology, prove factual statements, execute actual tools, or guarantee educational quality. No weaker-model benchmark or audience study has been performed; see [evaluation protocol](technical-animation/evals/README.md).
+
+## Three working recipes
+
+| Recipe | Mechanism | Interactive | Video |
+|---|---|---|---|
+| feedback-retry | Failed test → feedback → repair → retest → stop | [12s HTML](docs/recipes/feedback-retry.html) | [MP4](docs/recipes/media/feedback-retry.mp4) |
+| retrieval-evidence | Query → selected evidence → context → cited answer | [12s HTML](docs/recipes/retrieval-evidence.html) | [MP4](docs/recipes/media/retrieval-evidence.mp4) |
+| cache-aside | Miss → application reads origin and fills cache → subsequent hit | [14s HTML](docs/recipes/cache-aside.html) | [MP4](docs/recipes/media/cache-aside.mp4) |
+
+All are original mechanism illustrations using fictional teaching data, not live model/database/retrieval execution. The Agent recipe does not execute the displayed patch. RAG depicts inference-time evidence, not training. Cache-aside assumes the same unexpired, non-invalidated key; it does not teach write consistency.
+
+## Quick start — no animation code
+
+From the repository root, with Python 3.10+:
+
+```bash
+python3 technical-animation/scripts/recipe.py list
+python3 technical-animation/scripts/recipe.py init --recipe retrieval-evidence --out work/rag.json
+# Edit ONLY the allowed content/title/takeaway fields.
+python3 technical-animation/scripts/recipe.py check work/rag.json
+python3 technical-animation/scripts/recipe.py build work/rag.json --out build/rag-v1
+```
+
+Open `build/rag-v1/preview.html`. HTML compilation uses only Python's standard library; it needs no API key, Node, image service or browser installation. The standalone preview embeds its JavaScript and uses system fonts. Install a legally licensed CJK font on systems lacking Chinese glyphs; font files are not distributed.
+
+To revise, edit JSON and build into `rag-v2`. Existing output is refused. Do not directly edit generated `project.json`, `scene.mjs` or runtime files to bypass checks.
+
+A complete minimal configuration:
+
+```json
+{
+  "schema_version": 1,
+  "recipe": "cache-aside",
+  "title": "Cache: avoid the second DB read",
+  "takeaway": "Miss loads from origin; hit returns directly",
+  "content": {"request": "Read user 42", "key": "user:42", "value": "Ada"}
+}
+```
+
+Defaults: 12/12/14 seconds depending on recipe; minimum 10/12/12, maximum 40 seconds. Only **16:9, 1920×1080, 30/60fps, silent comic-lab** are currently supported in recipe mode. Unsupported ratios, styles, audio and mechanism types fail explicitly.
+
+[Full examples](technical-animation/recipes/) · [JSON Schema](technical-animation/schemas/recipe.schema.json) · [Recipe guide and repair instructions](technical-animation/references/recipe-mode.md)
+
+## Install as a Skill
+
+Copy the **whole** `technical-animation/` directory, not only `SKILL.md`.
+
+- Local Codex: `~/.agents/skills/technical-animation/` or project `.agents/skills/technical-animation/`.
+- Local Claude Code: `~/.claude/skills/technical-animation/` or project `.claude/skills/technical-animation/`.
+
+Back up/merge an existing installation. A host must have local file and command tools; a cloud chat does not automatically read your computer's skill directories.
+
+Prompt:
+
+```text
+Use technical-animation in default recipe mode for a 12-second RAG explainer.
+Show query, selected evidence, context and cited answer. 16:9, comic-lab, silent.
+Read the recipe guide, copy retrieval-evidence JSON, edit content only.
+Do not write Canvas, coordinates, easing or a new scene.mjs.
+Check the spec, allow at most two targeted repair attempts, then build and review.
+If no recipe matches, report that instead of relabeling another mechanism.
+Deliver standalone HTML and MP4 when rendering dependencies are available.
+Do not call structural validation proof of factual correctness.
+```
+
+## Render MP4
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+python -m pip install -r technical-animation/requirements.txt
+python -m playwright install chromium
+# Install ffmpeg + ffprobe separately (e.g. brew install ffmpeg).
+python technical-animation/scripts/recipe.py doctor
+python technical-animation/scripts/render.py build/rag-v1 --out build/rag-v1/video.mp4
+```
+
+Or append `--render` to the build command. Rendering requires Playwright/Chromium, FFmpeg/ffprobe, and installed CJK fonts. An existing Chromium can be passed via `--browser` / `CHROMIUM_PATH`. Default MP4 is H.264 CRF 16, high-quality lossy encoding, **not lossless**. No audio stream is included. The renderer checks decoding, frame count, dimensions, duration and random-access determinism.
+
+## Guardrails and limits
+
+Inputs reject unknown fields, malformed types, overlong text, duplicate document IDs, citations outside selected evidence, ambiguous statuses, unchanged patches and impossible durations. Runtime measures wrapped text and refuses overflow rather than making it unreadably small. Compiler events drive both animation and semantic-state checks; receiving state changes only upon arrival/completion.
+
+Errors include `code`, `field`, `message`, and `hint`. After two targeted repairs, stop instead of rewriting validators. Generated files have checksums. This is a production aid, **not a security sandbox or a semantic/factual proof system**.
+
+## Advanced mode remains available
+
+[Freeform mode](technical-animation/references/freeform-mode.md) retains the previous authoring path and reusable vector/motion library. New mechanisms, layouts, styles, ratios and bespoke cameras require actual authoring and review, not arbitrary relabeling of existing recipes.
+
+```bash
+python3 technical-animation/scripts/new_project.py --topic "TCP congestion control" --duration 15 --out ../tcp-animation
+```
+
+## Verification
+
+```bash
+python3 -m unittest discover -s technical-animation/tests -v
+python3 -m unittest discover -s tests -v
+node technical-animation/tests/test_motion.mjs
+python3 technical-animation/tests/check_recipe_browser.py --out build/recipe-checks
+python3 scripts/check_release.py
+```
+
+[Recorded checks](release-checks/v0.2/README.md) distinguish actual fixture/compiler/browser/media checks from unrun model and learner evaluations. Do not infer universal model performance from these tests.
+
+MIT applies to original code, documentation, vector assets and included example renders. Dependencies retain their own licenses. No personal photos, third-party creator assets, fonts, credentials or browser binaries are bundled. [NOTICE](NOTICE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+## Publish
+
+Use an authenticated, write-capable GitHub environment. A read-only connector cannot create a repository. The publication helper checks identity and manifest, refuses an existing repository, creates a new public repo, verifies the pushed commit, and configures `main:/docs` for Pages. Deployment may still be pending after configuration.
+
+```bash
+gh auth login --hostname github.com --git-protocol https --web
+python3 scripts/publish_github.py --owner YOUR_LOGIN --repo how-it-moves --public
+```
+
+Never send tokens in chat or commit them. [Publishing details](docs/PUBLISHING.md)
+
+Primary references: [Agent Skills](https://agentskills.io/specification), [Skill authoring](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices), [Agent feedback](https://www.anthropic.com/engineering/building-effective-agents), [RAG](https://arxiv.org/abs/2005.11401), [Cache-aside](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside).
+
+**Localization:** Configurable titles and content can use other languages within the width budget; built-in UI, captions, and diagnostics currently use Chinese. Full localization requires an advanced preset; this release does not claim complete English narration/caption support.

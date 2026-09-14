@@ -1,0 +1,153 @@
+{
+  "title": "Agent：把反馈变成下一步行动",
+  "takeaway": "模型选择工具，工具返回结果，结果进入上下文并改变下一步决策；达到目标后停止。",
+  "width": 1920,
+  "height": 1080,
+  "fps": 60,
+  "duration": 10,
+  "entry": "index.html",
+  "audio": "none",
+  "requires_feedback": true,
+  "mode": "auto",
+  "style": "comic-lab",
+  "font_family": "Noto Sans CJK SC",
+  "truth": "Mechanism illustration, not a live autonomous model recording. Fixed toy test: add(2,3).",
+  "events": [
+    {
+      "id": "goal",
+      "kind": "goal",
+      "start": 0,
+      "end": 1.15,
+      "actor": "user",
+      "target": "model",
+      "label": "让测试通过"
+    },
+    {
+      "id": "test1",
+      "kind": "call",
+      "start": 1.35,
+      "end": 2.05,
+      "actor": "model",
+      "target": "tool",
+      "label": "TEST",
+      "caused_by": "goal"
+    },
+    {
+      "id": "run1",
+      "kind": "execute",
+      "start": 2.05,
+      "end": 2.7,
+      "actor": "tool",
+      "label": "RUNNING",
+      "caused_by": "test1"
+    },
+    {
+      "id": "fail",
+      "kind": "result",
+      "start": 2.7,
+      "end": 3.5,
+      "actor": "tool",
+      "target": "model",
+      "label": "FAIL",
+      "caused_by": "run1"
+    },
+    {
+      "id": "decide1",
+      "kind": "decision",
+      "start": 3.5,
+      "end": 4.45,
+      "actor": "model",
+      "label": "检查报错，选择修改",
+      "caused_by": "fail"
+    },
+    {
+      "id": "patch",
+      "kind": "call",
+      "start": 4.45,
+      "end": 5.15,
+      "actor": "model",
+      "target": "tool",
+      "label": "PATCH",
+      "caused_by": "decide1"
+    },
+    {
+      "id": "apply",
+      "kind": "execute",
+      "start": 5.15,
+      "end": 5.5,
+      "actor": "tool",
+      "label": "PATCH APPLIED",
+      "caused_by": "patch"
+    },
+    {
+      "id": "test2",
+      "kind": "call",
+      "start": 5.5,
+      "end": 6.1,
+      "actor": "model",
+      "target": "tool",
+      "label": "TEST",
+      "caused_by": "apply"
+    },
+    {
+      "id": "run2",
+      "kind": "execute",
+      "start": 6.1,
+      "end": 6.75,
+      "actor": "tool",
+      "label": "RUNNING",
+      "caused_by": "test2"
+    },
+    {
+      "id": "pass",
+      "kind": "result",
+      "start": 6.75,
+      "end": 7.45,
+      "actor": "tool",
+      "target": "model",
+      "label": "PASS",
+      "caused_by": "run2"
+    },
+    {
+      "id": "decide2",
+      "kind": "decision",
+      "start": 7.45,
+      "end": 8.0,
+      "actor": "model",
+      "label": "结果满足目标",
+      "caused_by": "pass"
+    },
+    {
+      "id": "done",
+      "kind": "stop",
+      "start": 8.0,
+      "end": 10.0,
+      "actor": "model",
+      "label": "完成",
+      "caused_by": "decide2"
+    }
+  ],
+  "assets": [
+    {
+      "path": "../../runtime/rigs.mjs",
+      "origin": "original procedural vector rig",
+      "license": "MIT",
+      "status": "approved-for-demo",
+      "used": true
+    },
+    {
+      "path": "initial-generated-storyboard",
+      "origin": "image-generation",
+      "status": "rejected",
+      "used": false,
+      "reason": "Flattened storyboard, wrong style/mascot; unsuitable for articulated motion"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "claim": "Agents typically use tools in a loop with environmental feedback; stopping conditions matter."
+    }
+  ],
+  "ready_for_render": true
+}

@@ -1,0 +1,8 @@
+{
+  "python": "3.13.5",
+  "playwright": "1.57.0",
+  "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+  "chromium": "Chromium 144.0.7559.96 built on Debian GNU/Linux 13 (trixie)",
+  "font": "Noto Sans CJK SC from operating system; not bundled",
+  "tested_platform": "Linux x86_64; other hosts/OS not executed"
+}

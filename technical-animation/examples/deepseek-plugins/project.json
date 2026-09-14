@@ -1,0 +1,151 @@
+{
+  "title": "DeepSeek Harness · 插件如何协作",
+  "takeaway": "插件通过 ctx 提供能力；卸载时撤销对应注册。",
+  "width": 1920,
+  "height": 1080,
+  "fps": 60,
+  "duration": 10,
+  "entry": "index.html",
+  "audio": "none",
+  "requires_feedback": true,
+  "ready_for_render": true,
+  "events": [
+    {
+      "id": "mount-model",
+      "kind": "mount",
+      "start": 0.15,
+      "end": 0.85,
+      "actor": "model",
+      "label": "装入模型插件"
+    },
+    {
+      "id": "mount-tools",
+      "kind": "mount",
+      "start": 0.55,
+      "end": 1.25,
+      "actor": "tools",
+      "label": "装入工具插件"
+    },
+    {
+      "id": "mount-loop",
+      "kind": "mount",
+      "start": 1.05,
+      "end": 1.8,
+      "actor": "loop",
+      "label": "装入循环插件"
+    },
+    {
+      "id": "register-model",
+      "kind": "register",
+      "start": 2.05,
+      "end": 2.55,
+      "actor": "model",
+      "label": "注册模型能力",
+      "caused_by": "mount-model"
+    },
+    {
+      "id": "register-tools",
+      "kind": "register",
+      "start": 2.6,
+      "end": 3.1,
+      "actor": "tools",
+      "label": "注册工具能力",
+      "caused_by": "mount-tools"
+    },
+    {
+      "id": "register-loop",
+      "kind": "register",
+      "start": 3.15,
+      "end": 3.65,
+      "actor": "loop",
+      "label": "注册循环能力",
+      "caused_by": "mount-loop"
+    },
+    {
+      "id": "call",
+      "kind": "call",
+      "start": 5,
+      "end": 5.95,
+      "actor": "loop",
+      "label": "工具调用",
+      "caused_by": "register-loop"
+    },
+    {
+      "id": "execute",
+      "kind": "execute",
+      "start": 5.95,
+      "end": 6.2,
+      "actor": "tools",
+      "label": "执行完成",
+      "caused_by": "call"
+    },
+    {
+      "id": "result",
+      "kind": "result",
+      "start": 6.2,
+      "end": 7.15,
+      "actor": "tools",
+      "label": "返回结果",
+      "caused_by": "execute"
+    },
+    {
+      "id": "decision",
+      "kind": "decision",
+      "start": 7.15,
+      "end": 7.45,
+      "actor": "loop",
+      "label": "本次调用完成",
+      "caused_by": "result"
+    },
+    {
+      "id": "unload",
+      "kind": "unload",
+      "start": 8,
+      "end": 8.45,
+      "actor": "tools",
+      "label": "卸载工具插件",
+      "caused_by": "decision"
+    },
+    {
+      "id": "cleanup",
+      "kind": "cleanup",
+      "start": 8.45,
+      "end": 8.5,
+      "actor": "tools",
+      "label": "撤销其注册",
+      "caused_by": "unload"
+    },
+    {
+      "id": "hold",
+      "kind": "hold",
+      "start": 8.5,
+      "end": 10,
+      "actor": "scene",
+      "label": "稳定停留",
+      "caused_by": "cleanup"
+    }
+  ],
+  "assets": [
+    {
+      "path": "scene.mjs",
+      "origin": "original vector",
+      "license": "original task artwork",
+      "status": "approved",
+      "used": true
+    },
+    {
+      "path": "runtime/",
+      "origin": "Explain Motion runtime",
+      "license": "MIT",
+      "status": "approved",
+      "used": true
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md",
+      "checked": "2026-09-14",
+      "claim": "模型适配、工具注册和循环均为插件；插件贡献服务与可撤销效果，卸载时回收注册。"
+    }
+  ]
+}

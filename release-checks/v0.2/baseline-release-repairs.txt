@@ -1,0 +1,38 @@
+test_browser_checker_has_portable_help (test_recipe_release.RecipeReleaseTests.test_browser_checker_has_portable_help) ... FAIL
+test_content_changes_do_not_require_scene_edits (test_recipe_release.RecipeReleaseTests.test_content_changes_do_not_require_scene_edits) ... ok
+test_duplicate_json_key_not_silently_accepted (test_recipe_release.RecipeReleaseTests.test_duplicate_json_key_not_silently_accepted) ... ok
+test_malformed_manifest_returns_structured_error (test_recipe_release.RecipeReleaseTests.test_malformed_manifest_returns_structured_error) ... ERROR
+test_readme_json_examples_pass (test_recipe_release.RecipeReleaseTests.test_readme_json_examples_pass) ... ok
+test_script_end_tag_is_escaped_in_standalone_html (test_recipe_release.RecipeReleaseTests.test_script_end_tag_is_escaped_in_standalone_html) ... ok
+test_three_init_outputs_are_valid_without_agent_code (test_recipe_release.RecipeReleaseTests.test_three_init_outputs_are_valid_without_agent_code) ... ok
+
+======================================================================
+ERROR: test_malformed_manifest_returns_structured_error (test_recipe_release.RecipeReleaseTests.test_malformed_manifest_returns_structured_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_release.py", line 63, in test_malformed_manifest_returns_structured_error
+    errors = json.loads(result.stderr)['errors']
+             ~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+======================================================================
+FAIL: test_browser_checker_has_portable_help (test_recipe_release.RecipeReleaseTests.test_browser_checker_has_portable_help)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_release.py", line 23, in test_browser_checker_has_portable_help
+    self.assertTrue(path.is_file(), 'README browser checker is missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : README browser checker is missing
+
+----------------------------------------------------------------------
+Ran 7 tests in 11.245s
+
+FAILED (failures=1, errors=1)

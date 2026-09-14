@@ -1,0 +1,356 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Explain Motion recipe input v1",
+  "description": "Schema plus recipe.py check: visual width, citations and temporal constraints require semantic validation. Never execute input as code.",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "recipe",
+        "title",
+        "takeaway",
+        "content"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "recipe": {
+          "const": "feedback-retry"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 48,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+          "x-visual-units-limit": 24
+        },
+        "takeaway": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 56,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+          "x-visual-units-limit": 28
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 10,
+          "maximum": 40,
+          "default": 12
+        },
+        "fps": {
+          "type": "integer",
+          "enum": [
+            30,
+            60
+          ],
+          "default": 60
+        },
+        "style": {
+          "const": "comic-lab",
+          "default": "comic-lab"
+        },
+        "aspect": {
+          "const": "16:9",
+          "default": "16:9"
+        },
+        "audio": {
+          "const": "none",
+          "default": "none"
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "goal",
+            "action",
+            "failure",
+            "adjustment",
+            "success",
+            "before",
+            "after",
+            "decision"
+          ],
+          "properties": {
+            "goal": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 28,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 14
+            },
+            "action": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 4
+            },
+            "failure": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 4
+            },
+            "adjustment": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 4
+            },
+            "success": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 4
+            },
+            "before": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 22,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 11
+            },
+            "after": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 22,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 11
+            },
+            "decision": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 10
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "recipe",
+        "title",
+        "takeaway",
+        "content"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "recipe": {
+          "const": "retrieval-evidence"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 48,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+          "x-visual-units-limit": 24
+        },
+        "takeaway": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 56,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+          "x-visual-units-limit": 28
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 12,
+          "maximum": 40,
+          "default": 12
+        },
+        "fps": {
+          "type": "integer",
+          "enum": [
+            30,
+            60
+          ],
+          "default": 60
+        },
+        "style": {
+          "const": "comic-lab",
+          "default": "comic-lab"
+        },
+        "aspect": {
+          "const": "16:9",
+          "default": "16:9"
+        },
+        "audio": {
+          "const": "none",
+          "default": "none"
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "question",
+            "answer",
+            "documents",
+            "citations"
+          ],
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 16
+            },
+            "answer": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 48,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 24
+            },
+            "documents": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 3,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "text",
+                  "selected"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8,
+                    "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+                    "x-visual-units-limit": 4
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 34,
+                    "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+                    "x-visual-units-limit": 17
+                  },
+                  "selected": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "citations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "maxItems": 2,
+              "uniqueItems": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "recipe",
+        "title",
+        "takeaway",
+        "content"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "recipe": {
+          "const": "cache-aside"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 48,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+          "x-visual-units-limit": 24
+        },
+        "takeaway": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 56,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+          "x-visual-units-limit": 28
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 12,
+          "maximum": 40,
+          "default": 14
+        },
+        "fps": {
+          "type": "integer",
+          "enum": [
+            30,
+            60
+          ],
+          "default": 60
+        },
+        "style": {
+          "const": "comic-lab",
+          "default": "comic-lab"
+        },
+        "aspect": {
+          "const": "16:9",
+          "default": "16:9"
+        },
+        "audio": {
+          "const": "none",
+          "default": "none"
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "request",
+            "key",
+            "value"
+          ],
+          "properties": {
+            "request": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 8
+            },
+            "key": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 10
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 14,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+              "x-visual-units-limit": 7
+            }
+          }
+        }
+      }
+    }
+  ]
+}

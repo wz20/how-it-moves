@@ -1,0 +1,128 @@
+{
+  "version": "0.2.0",
+  "local_status": "validated",
+  "python_regressions": {
+    "skill": 50,
+    "publication": 11,
+    "total": 61
+  },
+  "node_motion": "pass",
+  "browser": {
+    "ok": true,
+    "loading_mode": "self-contained HTML via page.set_content",
+    "scope": "fixture rendering and state parity; NOT an LLM benchmark or audience study",
+    "frames_checked": 96,
+    "recipes": [
+      {
+        "recipe": "feedback-retry",
+        "frames_checked": 36,
+        "semantic_match": true,
+        "deterministic_seek": true,
+        "play_pause_seek": true,
+        "browser_errors": [],
+        "external_requests": [],
+        "screenshots": [
+          "feedback-retry/frame-0145.png",
+          "feedback-retry/frame-0264.png",
+          "feedback-retry/frame-0373.png",
+          "feedback-retry/frame-0470.png",
+          "feedback-retry/frame-0576.png",
+          "feedback-retry/frame-0660.png"
+        ]
+      },
+      {
+        "recipe": "retrieval-evidence",
+        "frames_checked": 24,
+        "semantic_match": true,
+        "deterministic_seek": true,
+        "play_pause_seek": true,
+        "browser_errors": [],
+        "external_requests": [],
+        "screenshots": [
+          "retrieval-evidence/frame-0195.png",
+          "retrieval-evidence/frame-0279.png",
+          "retrieval-evidence/frame-0464.png",
+          "retrieval-evidence/frame-0660.png"
+        ]
+      },
+      {
+        "recipe": "cache-aside",
+        "frames_checked": 36,
+        "semantic_match": true,
+        "deterministic_seek": true,
+        "play_pause_seek": true,
+        "browser_errors": [],
+        "external_requests": [],
+        "screenshots": [
+          "cache-aside/frame-0101.png",
+          "cache-aside/frame-0298.png",
+          "cache-aside/frame-0497.png",
+          "cache-aside/frame-0623.png",
+          "cache-aside/frame-0780.png"
+        ]
+      }
+    ]
+  },
+  "approved_assets": {
+    "docs/index.html": {
+      "unchanged": true,
+      "sha256": "0a78f5c20e4a80c0df4b9a74b509e9ae7b75b7fc3608bb8d4db8cd4d456b1012"
+    },
+    "docs/media/agent-loop-10s.mp4": {
+      "unchanged": true,
+      "sha256": "e4460f61bd7858a6bfa715975d096b2fdf963b22171c39dc521b327f05e5de51"
+    }
+  },
+  "videos": {
+    "feedback-retry.qa": {
+      "duration": 12.0,
+      "frames": 720,
+      "decode": "pass",
+      "width": 1920,
+      "height": 1080,
+      "audio": "none",
+      "sha256": "5f43db509cc239dcf3c18c1eb74d9d909828e653ca0d2f979977cee85fc3ebe8"
+    },
+    "retrieval-evidence.qa": {
+      "duration": 12.0,
+      "frames": 720,
+      "decode": "pass",
+      "width": 1920,
+      "height": 1080,
+      "audio": "none",
+      "sha256": "f77dc2feae2324c4c179fe200c650cdf1e54c9c1b7e5ef6f1b9d0ea755a64efb"
+    },
+    "cache-aside.qa": {
+      "duration": 14.0,
+      "frames": 840,
+      "decode": "pass",
+      "width": 1920,
+      "height": 1080,
+      "audio": "none",
+      "sha256": "231dcd925335552247724b0bfb43578facb07a91dd20c06176e8cfe567072f3d"
+    }
+  },
+  "cross_model_evaluation": {
+    "status": "not_run",
+    "reason": "No weaker-model provider was executed; fixture/renderer tests are not model benchmarks."
+  },
+  "audience_comprehension": "not_run",
+  "remote": {
+    "repository": "wz20/explain-motion",
+    "status": "not_published",
+    "repo_lookup": "404",
+    "connector_capabilities": "48 read-only tools; no creation/push action",
+    "local_gh": "not installed",
+    "credentials": "no available authenticated local session",
+    "publish_helper_attempt": {
+      "exit_code": 1,
+      "message": "Missing gh; stopped before creating git history or network writes",
+      "log": "publish-attempt.txt"
+    }
+  },
+  "environment": {
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "browser": "Chromium /usr/bin/chromium"
+  }
+}

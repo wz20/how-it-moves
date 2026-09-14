@@ -1,0 +1,74 @@
+FFFFFF
+======================================================================
+FAIL: test_init_refuses_existing (test_recipe_cli.CLITests.test_init_refuses_existing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 26, in test_init_refuses_existing
+    f=Path(td)/'s.json';f.write_text('keep');p=self.run_cli('init','--recipe','feedback-retry','--out',f)
+                                               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 6, in run_cli
+    self.assertTrue(CLI.exists(),'Recipe CLI missing; simple configs cannot yet produce animation')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Recipe CLI missing; simple configs cannot yet produce animation
+
+======================================================================
+FAIL: test_invalid_writes_nothing (test_recipe_cli.CLITests.test_invalid_writes_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 23, in test_invalid_writes_nothing
+    p=self.run_cli('build',src,'--out',out);self.assertNotEqual(p.returncode,0);self.assertFalse(out.exists())
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 6, in run_cli
+    self.assertTrue(CLI.exists(),'Recipe CLI missing; simple configs cannot yet produce animation')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Recipe CLI missing; simple configs cannot yet produce animation
+
+======================================================================
+FAIL: test_list (test_recipe_cli.CLITests.test_list)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 9, in test_list
+    p=self.run_cli('list');self.assertEqual(p.returncode,0,p.stderr);self.assertIn('cache-aside',p.stdout)
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 6, in run_cli
+    self.assertTrue(CLI.exists(),'Recipe CLI missing; simple configs cannot yet produce animation')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Recipe CLI missing; simple configs cannot yet produce animation
+
+======================================================================
+FAIL: test_no_overwrite (test_recipe_cli.CLITests.test_no_overwrite)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 18, in test_no_overwrite
+    p=self.run_cli('build',S/'recipes/cache-aside.json','--out',td)
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 6, in run_cli
+    self.assertTrue(CLI.exists(),'Recipe CLI missing; simple configs cannot yet produce animation')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Recipe CLI missing; simple configs cannot yet produce animation
+
+======================================================================
+FAIL: test_portable_build (test_recipe_cli.CLITests.test_portable_build)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 12, in test_portable_build
+    out=Path(td)/'movie';p=self.run_cli('build',S/'recipes/retrieval-evidence.json','--out',out)
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 6, in run_cli
+    self.assertTrue(CLI.exists(),'Recipe CLI missing; simple configs cannot yet produce animation')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Recipe CLI missing; simple configs cannot yet produce animation
+
+======================================================================
+FAIL: test_tampered_contract_check (test_recipe_cli.CLITests.test_tampered_contract_check)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 30, in test_tampered_contract_check
+    out=Path(td)/'movie';self.assertEqual(self.run_cli('build',S/'recipes/cache-aside.json','--out',out).returncode,0)
+                                          ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/upgrade_v02/explain-motion/technical-animation/tests/test_recipe_cli.py", line 6, in run_cli
+    self.assertTrue(CLI.exists(),'Recipe CLI missing; simple configs cannot yet produce animation')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Recipe CLI missing; simple configs cannot yet produce animation
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.004s
+
+FAILED (failures=6)
