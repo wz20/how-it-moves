@@ -10,17 +10,13 @@
 
 [![原版 10 秒 Agent 动画，可播放、暂停、拖动](docs/media/agent-loop.gif)](https://wz20.github.io/how-it-moves/)
 
-**原版 HTML 动画完整保留，没有用新版替换。** [离线 HTML](docs/index.html) · [原版 1080p60 MP4](docs/media/agent-loop-10s.mp4)
+[离线 HTML](docs/index.html) · [原版 1080p60 MP4](docs/media/agent-loop-10s.mp4)
 
 </div>
 
-> GitHub Pages 需要仓库实际发布并启用后才能访问。没有 Pages 时下载后双击 HTML；GitHub 文件页只显示源码。这里的在线地址是发布目标，不是已经上线的证明。
-
-原名 Explain Motion；安装目录名仍为 `technical-animation`。早期示例保留原画面标记与文件，便于复现。
+点击动画可打开交互预览，支持播放、暂停和逐帧拖动。
 
 ## 动画效果展示
-
-全部已生成的完整示例都在本 README 展示：顶部保留原版 Agent 动画，下方展示新增示例。GIF 为压缩预览；MP4 保留原始清晰度与时长。
 
 ### DeepSeek Harness：插件如何协作 · 10s
 
@@ -64,8 +60,6 @@
 </details>
 
 DeepSeek 示例的[可修改工程](technical-animation/examples/deepseek-plugins/)和[验证边界](technical-animation/examples/deepseek-plugins/README.md)一并开源。它使用高级模式，不是新增的通用插件配方。所有示例为静音机制示意，不是真实运行录像；未做观众理解测试。
-
-Chrome 连接失败或授权阻塞时，Skill 会直接切换宿主内置浏览器；预览与 MP4 导出能力分别检查。
 
 ## v0.2 改了什么？
 
@@ -220,7 +214,7 @@ python3 scripts/check_release.py
 
 [本版实测记录](release-checks/v0.2/README.md) · [模型评测协议](technical-animation/evals/README.md)。通过本地测试不等于已经在不同模型、不同操作系统或真实受众上证明稳定性。
 
-原版 `docs/index.html` 和原版 MP4 与 v0.1 逐字节一致。README GIF 只是预览；交互效果请看 HTML。默认风格为原创漫画技术解说，不复制其他创作者的角色、标识或视频素材，不声称得到创作者背书。
+GIF 为压缩预览，高清动画可下载 MP4。默认风格为原创漫画技术解说，不复制其他创作者的角色、标识或视频素材，不声称得到创作者背书。
 
 MIT 许可覆盖本项目原创代码、文档、矢量角色及示例；第三方依赖遵循各自许可证。无字体、个人照片、API key 或浏览器二进制。见 [NOTICE](NOTICE.md)、[贡献指南](CONTRIBUTING.md)、[安全说明](SECURITY.md)。
 

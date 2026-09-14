@@ -6,15 +6,11 @@
 
 [![Original 10-second Agent animation](docs/media/agent-loop.gif)](https://wz20.github.io/how-it-moves/)
 
-The original HTML and MP4 are preserved byte-for-byte. GitHub displays HTML source; open it locally in a browser, or enable GitHub Pages (`main:/docs`). An intended Pages URL is not evidence of a completed deployment.
-
-Formerly Explain Motion. The installable Skill directory remains `technical-animation`; existing renders retain their original labels for reproducibility.
+Click an animation to open its interactive preview, with playback, pause, and frame-by-frame seeking.
 
 [Original 1080p60 MP4](docs/media/agent-loop-10s.mp4)
 
 ## Animation showcase
-
-Every completed example is shown in this README: the original Agent animation is above, and the remaining examples are below. GIFs are compressed previews; MP4s retain the rendered resolution and duration.
 
 ### DeepSeek Harness: how plugins work · 10s
 
@@ -58,8 +54,6 @@ The application loads the origin, fills the cache, and hits it on the next read.
 </details>
 
 The DeepSeek [editable project](technical-animation/examples/deepseek-plugins/) and [verification limits](technical-animation/examples/deepseek-plugins/README.md) are included. It is an advanced-mode example, not a new generic recipe. All examples are silent mechanism illustrations, not live execution recordings; no audience study has been performed.
-
-On a Chrome connection failure or permission block, the Skill switches directly to the host’s built-in browser. Preview and MP4 export capabilities are checked separately.
 
 ## What changed
 
