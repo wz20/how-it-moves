@@ -10,6 +10,22 @@ Click an animation to open its interactive preview, with playback, pause, and fr
 
 [Original 1080p60 MP4](docs/media/agent-loop-10s.mp4)
 
+<!-- ILLUSTRATED-STUDIO:BEGIN -->
+## v0.4 · Physical comic assets, content-only authoring
+
+Original artwork is preserved and the three mechanism demonstrations are rebuilt using a shared, content-driven illustrated presentation. The renderer owns the props, poses and camera; the model edits validated content only. No weaker-model or audience benchmark is claimed.
+
+```bash
+python3 technical-animation/scripts/illustrate.py init --recipe feedback-retry --out work/agent.json
+python3 technical-animation/scripts/illustrate.py check work/agent.json
+python3 technical-animation/scripts/illustrate.py build work/agent.json --out build/agent-v1 --render
+```
+
+[Guide / 使用指南](technical-animation/references/illustrated-mode.md) · [All three demos](docs/illustrated/index.html)
+
+18–40s · 1920×1080 · 30/60fps · silent / 无声。Old demos are preserved / 原版保留。
+<!-- ILLUSTRATED-STUDIO:END -->
+
 ## Animation showcase
 
 ### DeepSeek Harness: how plugins work · 10s
@@ -20,29 +36,29 @@ Advanced mode: mount → register → call and return → unload and clean up.
 
 [▶ Interactive preview](https://wz20.github.io/how-it-moves/deepseek-plugins.html) · [MP4](docs/media/deepseek-plugins.mp4)
 
-### Feedback and retry · 12s
+### Feedback and retry · 20s · Illustrated Studio
 
-[![Feedback and retry](docs/recipes/media/feedback-retry.gif)](https://wz20.github.io/how-it-moves/recipes/feedback-retry.html)
+[![Feedback and retry](docs/illustrated/media/feedback-retry.gif)](https://wz20.github.io/how-it-moves/illustrated/feedback-retry.html)
 
-Failure → feedback → repair → verify → stop.
+Original jointed robot and physical terminal. Feedback changes the next action.
 
-[▶ Interactive preview](https://wz20.github.io/how-it-moves/recipes/feedback-retry.html) · [MP4](docs/recipes/media/feedback-retry.mp4)
+[▶ HTML](https://wz20.github.io/how-it-moves/illustrated/feedback-retry.html) · [1080p60 MP4](docs/illustrated/media/feedback-retry.mp4)
 
-### Retrieval and evidence · 12s
+### Retrieval and evidence · 20s · Illustrated Studio
 
-[![Retrieval and evidence](docs/recipes/media/retrieval-evidence.gif)](https://wz20.github.io/how-it-moves/recipes/retrieval-evidence.html)
+[![Retrieval and evidence](docs/illustrated/media/retrieval-evidence.gif)](https://wz20.github.io/how-it-moves/illustrated/retrieval-evidence.html)
 
-Retrieve → select evidence → build context → cite.
+Archive originals stay put. Evidence copies enter a ring binder; the press prints a cited answer.
 
-[▶ Interactive preview](https://wz20.github.io/how-it-moves/recipes/retrieval-evidence.html) · [MP4](docs/recipes/media/retrieval-evidence.mp4)
+[▶ HTML](https://wz20.github.io/how-it-moves/illustrated/retrieval-evidence.html) · [1080p60 MP4](docs/illustrated/media/retrieval-evidence.mp4)
 
-### Cache miss and hit · 14s
+### Cache miss and hit · 22s · Illustrated Studio
 
-[![Cache miss and hit](docs/recipes/media/cache-aside.gif)](https://wz20.github.io/how-it-moves/recipes/cache-aside.html)
+[![Cache miss and hit](docs/illustrated/media/cache-aside.gif)](https://wz20.github.io/how-it-moves/illustrated/cache-aside.html)
 
-The application loads the origin, fills the cache, and hits it on the next read.
+A physical drawer opens empty, stores a key/value copy, and serves the next hit.
 
-[▶ Interactive preview](https://wz20.github.io/how-it-moves/recipes/cache-aside.html) · [MP4](docs/recipes/media/cache-aside.mp4)
+[▶ HTML](https://wz20.github.io/how-it-moves/illustrated/cache-aside.html) · [1080p60 MP4](docs/illustrated/media/cache-aside.mp4)
 
 <details>
 <summary>Supplement: DeepSeek call/return motion test · 3s</summary>
@@ -61,7 +77,7 @@ v0.1 asked the host agent to design and implement `scene.mjs`. v0.2 defaults to 
 
 This removes model responsibility for animation engineering **inside supported mechanisms**. It does not make a model understand unfamiliar technology, prove factual statements, execute actual tools, or guarantee educational quality. No weaker-model benchmark or audience study has been performed; see [evaluation protocol](technical-animation/evals/README.md).
 
-## Three working recipes
+## Legacy recipes (preserved)
 
 | Recipe | Mechanism | Interactive | Video |
 |---|---|---|---|
@@ -71,7 +87,7 @@ This removes model responsibility for animation engineering **inside supported m
 
 All are original mechanism illustrations using fictional teaching data, not live model/database/retrieval execution. The Agent recipe does not execute the displayed patch. RAG depicts inference-time evidence, not training. Cache-aside assumes the same unexpired, non-invalidated key; it does not teach write consistency.
 
-## Quick start — no animation code
+## Legacy recipe entry point
 
 From the repository root, with Python 3.10+:
 

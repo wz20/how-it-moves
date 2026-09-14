@@ -4,7 +4,7 @@ description: Use when explaining technical mechanisms with comic-style animation
 license: MIT
 compatibility: Python 3.10+ for recipe compilation and offline HTML; Playwright/Chromium, FFmpeg and system CJK fonts for silent MP4 export. A host capable of files and commands is required. No model API or image service is bundled.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
   author: "Explain Motion contributors"
 ---
 
@@ -13,6 +13,22 @@ metadata:
 原名 Explain Motion；安装目录名保持 `technical-animation`。
 
 **先匹配机制，再选择镜头路径。默认填写内容，不从零写动画；让动作解释因果，而不是给文字配动效。**
+
+## 默认选择：精致漫画，而不是动态技术图
+
+Agent 反馈、RAG、缓存三个机制默认使用 [Illustrated Studio](references/illustrated-mode.md)。它保持初版大机器人、实体终端、档案柜、活页本、快取抽屉等完整素材，让普通模型只填内容。不要用小图标、代码面板和通用圆角框替代已经确认的美术。
+
+```bash
+python SKILL_DIR/scripts/illustrate.py init --recipe feedback-retry --out PROJECT_DIR/source.json
+python SKILL_DIR/scripts/illustrate.py check PROJECT_DIR/source.json
+python SKILL_DIR/scripts/illustrate.py build PROJECT_DIR/source.json --out PROJECT_DIR/v1 --render
+```
+
+另外两个 recipe：`retrieval-evidence`、`cache-aside`。默认20/20/22秒；18—40秒、16:9、30/60fps、无声。没有渲染依赖时去掉 `--render`，明确只完成 HTML。
+
+先匹配机制，再选呈现：上述三个机制优先 `illustrate.py`；明确要旧版才用 `recipe.py`；分区检索或明确要架构图再用 `direct.py`。不匹配的新机制使用高级模式，不乱换标签。
+
+**美术和机制独立验收。** 暂停画面应有完整角色/实体道具及层次；动作应保持对象身份。`E_ART_TEXT` 时缩短文字，不缩成小字或退回技术图。素材缺失应报告失败；不得绕过验证器。片头/片尾至少查看实际关键帧，动作中段查看路径、接触和反馈，不能把测试通过说成审美已获用户认可。现有浏览器回退规则适用于此模式。
 
 ## v0.3 导演路径：先缩小范围，再展开机制
 

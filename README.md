@@ -37,6 +37,22 @@ python3 technical-animation/scripts/render.py build/search-v1 --out build/search
 
 可复现检查见 [v0.3 验证记录](release-checks/v0.3/README.md)。旧版演示与浏览器回退策略保留，参考原视频及截图不提交到开源仓库。
 
+<!-- ILLUSTRATED-STUDIO:BEGIN -->
+## v0.4 · 精致漫画素材，不再退化成技术图
+
+保留初版的精致角色与实体道具，重制 Agent、RAG、缓存三个案例。模型只填写内容，素材、表演和构图由运行库提供；不需要普通模型重新写动画代码。自动检查不等于审美、弱模型成功率或学习效果评测。
+
+```bash
+python3 technical-animation/scripts/illustrate.py init --recipe feedback-retry --out work/agent.json
+python3 technical-animation/scripts/illustrate.py check work/agent.json
+python3 technical-animation/scripts/illustrate.py build work/agent.json --out build/agent-v1 --render
+```
+
+[Guide / 使用指南](technical-animation/references/illustrated-mode.md) · [All three demos](docs/illustrated/index.html)
+
+18–40s · 1920×1080 · 30/60fps · silent / 无声。Old demos are preserved / 原版保留。
+<!-- ILLUSTRATED-STUDIO:END -->
+
 ## 动画效果展示
 
 ### DeepSeek Harness：插件如何协作 · 10s
@@ -47,29 +63,29 @@ python3 technical-animation/scripts/render.py build/search-v1 --out build/search
 
 [▶ 交互预览](https://wz20.github.io/how-it-moves/deepseek-plugins.html) · [MP4](docs/media/deepseek-plugins.mp4)
 
-### 反馈与重试 · 12s
+### 反馈与重试 · 20s · Illustrated Studio
 
-[![反馈与重试](docs/recipes/media/feedback-retry.gif)](https://wz20.github.io/how-it-moves/recipes/feedback-retry.html)
+[![反馈与重试](docs/illustrated/media/feedback-retry.gif)](https://wz20.github.io/how-it-moves/illustrated/feedback-retry.html)
 
-失败反馈 → 修改 → 再次验证 → 停止。
+保留初版关节机器人与实体终端；先看反馈，再修改与验证。
 
-[▶ 交互预览](https://wz20.github.io/how-it-moves/recipes/feedback-retry.html) · [MP4](docs/recipes/media/feedback-retry.mp4)
+[▶ HTML](https://wz20.github.io/how-it-moves/illustrated/feedback-retry.html) · [1080p60 MP4](docs/illustrated/media/feedback-retry.mp4)
 
-### 检索与证据 · 12s
+### 检索与证据 · 20s · Illustrated Studio
 
-[![检索与证据](docs/recipes/media/retrieval-evidence.gif)](https://wz20.github.io/how-it-moves/recipes/retrieval-evidence.html)
+[![检索与证据](docs/illustrated/media/retrieval-evidence.gif)](https://wz20.github.io/how-it-moves/illustrated/retrieval-evidence.html)
 
-检索候选 → 选择证据 → 汇入上下文 → 引用回答。
+档案柜保留原件，证据副本进入活页本，生成机输出带引用的回答。
 
-[▶ 交互预览](https://wz20.github.io/how-it-moves/recipes/retrieval-evidence.html) · [MP4](docs/recipes/media/retrieval-evidence.mp4)
+[▶ HTML](https://wz20.github.io/how-it-moves/illustrated/retrieval-evidence.html) · [1080p60 MP4](docs/illustrated/media/retrieval-evidence.mp4)
 
-### 缓存：未命中与命中 · 14s
+### 缓存：未命中与命中 · 22s · Illustrated Studio
 
-[![缓存：未命中与命中](docs/recipes/media/cache-aside.gif)](https://wz20.github.io/how-it-moves/recipes/cache-aside.html)
+[![缓存：未命中与命中](docs/illustrated/media/cache-aside.gif)](https://wz20.github.io/how-it-moves/illustrated/cache-aside.html)
 
-应用回源并填充缓存，同一键再次命中。
+快取柜先打开空抽屉，再保存键值副本；同一个键第二次命中，不再回源。
 
-[▶ 交互预览](https://wz20.github.io/how-it-moves/recipes/cache-aside.html) · [MP4](docs/recipes/media/cache-aside.mp4)
+[▶ HTML](https://wz20.github.io/how-it-moves/illustrated/cache-aside.html) · [1080p60 MP4](docs/illustrated/media/cache-aside.mp4)
 
 <details>
 <summary>补充：DeepSeek 插件调用与回传动作测试 · 3s</summary>
@@ -100,7 +116,7 @@ DeepSeek 示例的[可修改工程](technical-animation/examples/deepseek-plugin
 
 这不是独立的文生视频模型，也不自动证明技术事实。降低的是动画工程门槛；对陌生技术的理解、引用是否支持答案、观众是否真的学懂，仍须核验。**尚未做弱模型成功率或受众理解效果的对比实验。**
 
-## 三套真正能运行的配方
+## 兼容保留的旧版配方
 
 | 配方 | 讲清的机制 | 可拖动 HTML | 实际 MP4 |
 |---|---|---|---|
@@ -110,7 +126,7 @@ DeepSeek 示例的[可修改工程](technical-animation/examples/deepseek-plugin
 
 各配方有自己的布局和动作，不是换标签套图。所有示例为**机制示意、虚构教学数据、无音轨**，不是实时系统执行录屏。Agent 配方不实际执行示例补丁；RAG 例子不训练模型；缓存例子假设同一键未过期且未失效。
 
-## 60 秒开始：不用写动画代码
+## 旧版配方入口（兼容保留）
 
 解压或克隆本仓库后，在仓库根目录运行。**仅生成 HTML 只需要 Python 3.10+，不需要 API key、Node、浏览器安装或付费服务。**
 

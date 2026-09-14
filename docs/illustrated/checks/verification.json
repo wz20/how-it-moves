@@ -1,0 +1,47 @@
+{
+  "results": [
+    {
+      "recipe": "feedback-retry",
+      "frames_checked": 1200,
+      "finite_geometry": true,
+      "text_width": true,
+      "semantic_boundaries": true,
+      "seek_deterministic": true,
+      "controls": true,
+      "images": {
+        "300": "57c2e745b0012b3a1f7c6b02e07cbc065c65d37b056f8e0754759139c8392e74",
+        "600": "126f0264e8f70bb4d38786086a675fa7b9e4ce81f12a4a8689ffa7ac45aefddc",
+        "1199": "3fc1a75a5bfba0a5fb447fc0b1a8fc0615067987dc0c1a30e0a9fc94e1559a81"
+      }
+    },
+    {
+      "recipe": "retrieval-evidence",
+      "frames_checked": 1200,
+      "finite_geometry": true,
+      "text_width": true,
+      "semantic_boundaries": true,
+      "seek_deterministic": true,
+      "controls": true,
+      "images": {
+        "300": "f28ba0a224f95b0fc85e74d8e6c071b42741eb48158d480a147a642f99566413",
+        "600": "ee8aec2d6a48018fee26b2231c1deebaf0b838ebb052f1ea58b5f428d61bf50f",
+        "1199": "73611819a336abbbc75f913e03848d0f0dd46991e46199a0c47dd19f7f3bc36c"
+      }
+    },
+    {
+      "recipe": "cache-aside",
+      "frames_checked": 1320,
+      "finite_geometry": true,
+      "text_width": true,
+      "semantic_boundaries": true,
+      "seek_deterministic": true,
+      "controls": true,
+      "images": {
+        "330": "26952d4c5064b868e7eec8193904ef8ccf92e348f9f3e8a55a988d8498931de6",
+        "660": "3a5706a01ad3b21fbcfd1d6e8b978156871c605c17ee5b04585157f1558a26c0",
+        "1319": "bf9e4631e6af608859d6e7bf07157d40f140e456af73841397ed396ec30d69c4"
+      }
+    }
+  ],
+  "limits": "Does not establish aesthetic superiority, weak-model success rate or audience comprehension."
+}
