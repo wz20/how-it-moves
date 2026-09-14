@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import {between,mixBox,stagedReflow,fitCamera,routePoint,shotAt,semanticAt} from '../runtime/editorial.mjs';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+let passed=0;function test(name,fn){fn();passed++;console.log('PASS '+name)}
+test('clamp progress at both ends',()=>{assert.equal(between(-1,0,10),0);assert.equal(between(11,0,10),1)});
+test('constant distance polyline, not equal time per edge',()=>{assert.deepEqual(routePoint([[0,0],[10,0],[10,30]],.5),[10,10])});
+test('zero-distance path is stable',()=>assert.deepEqual(routePoint([[2,3],[2,3]],.5),[2,3]));
+test('camera fits corners inside viewport',()=>{const b=[900,330,340,300],v=[60,245,1800,635],c=fitCamera(b,v);for(const p of [[b[0],b[1]],[b[0]+b[2],b[1]+b[3]]]){assert.ok(p[0]*c.s+c.x>=v[0]);assert.ok(p[0]*c.s+c.x<=v[0]+v[2]);assert.ok(p[1]*c.s+c.y>=v[1]);assert.ok(p[1]*c.s+c.y<=v[1]+v[3])}});
+test('invalid camera rejected',()=>assert.throws(()=>fitCamera([0,0,0,200])));
+test('shot uses half-open frame intervals',()=>assert.equal(shotAt([{id:'a',start_frame:0,end_frame:5},{id:'b',start_frame:5,end_frame:10}],5).id,'b'));
+test('reflow preserves endpoint identity and geometry',()=>{const a=[100,200,330,260],b=[500,400,530,94];assert.deepEqual(stagedReflow(a,b,0),a);assert.deepEqual(stagedReflow(a,b,1),b)});
+test('large cards do not overlap during reflow',()=>{for(let f=0;f<=120;f++){const boxes=[0,1,2].map(i=>stagedReflow([525+i*389,416,332,260],[490,420+i*113,530,94],f/120));for(let i=0;i<3;i++)for(let j=i+1;j<3;j++){const a=boxes[i],b=boxes[j];const overlap=Math.min(a[0]+a[2],b[0]+b[2])-Math.max(a[0],b[0])>0&&Math.min(a[1]+a[3],b[1]+b[3])-Math.max(a[1],b[1])>0;assert.ok(!overlap,`overlap frame ${f}`)}}});
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const code="import sys,json;sys.path.insert(0,sys.argv[1]);from direct import compile_project;print(json.dumps(compile_project(json.load(open(sys.argv[2])))))";
+const spec=JSON.parse(execFileSync('python3',['-c',code,path.join(root,'scripts'),path.join(root,'directing/partition-search.json')],{encoding:'utf8'}));
+const E=Object.fromEntries(spec.events.map(e=>[e.id,e]));
+test('selection changes on arrival, not before',()=>{assert.equal(semanticAt(spec,E.choose.end_frame-1).selected,null);assert.equal(semanticAt(spec,E.choose.end_frame).selected,'scenery')});
+test('ranking only begins after all returns',()=>{for(let f=0;f<spec.fps*spec.duration;f++){const s=semanticAt(spec,f);if(s.ranking)assert.equal(s.returned.length,3)}});
+test('result cannot appear before delivery',()=>{assert.deepEqual(semanticAt(spec,E.deliver.end_frame-1).answerIds,[]);assert.deepEqual(semanticAt(spec,E.deliver.end_frame).answerIds,['img24','img12','img31'])});
+test('arbitrary order seeking computes same state',()=>{const a=semanticAt(spec,1100);semanticAt(spec,0);semanticAt(spec,1300);assert.deepEqual(semanticAt(spec,1100),a)});
+console.log(JSON.stringify({passed}));

@@ -16,6 +16,27 @@
 
 点击动画可打开交互预览，支持播放、暂停和逐帧拖动。
 
+## v0.3：从动态流程图，到有观察重点的多镜头讲解
+
+新增**内容驱动的导演路径**：普通模型填短文案和候选数据，不写 Canvas、镜头坐标或缓动。固定的机制合同与镜头运行库共同保证对象身份、动作先后和读图顺序；不替换已有三个配方或 DeepSeek 演示。
+
+**[▶ 新增 24 秒分区检索演示](https://wz20.github.io/how-it-moves/directed-search.html)** · [演示源码](docs/directed-search.html) · [参考视频逐段分析](technical-animation/references/reference-milvus.md) · [完整使用指南](technical-animation/references/editorial-mode.md)
+
+六个镜头：概览 → 选中分区、其余变暗 → 同一父框展开 → 三路检索/候选回传 → 收齐再排序 → 回到全局。新增有边界的镜头聚焦、逐层揭示、恒速路径传输，以及“收缩—移动—展开”的防重叠重排。浅底细线、语义配色与原创结构道具服务于理解，不复制参考创作者素材。
+
+```bash
+python3 technical-animation/scripts/direct.py init --out work/search.json
+# 只修改内容；不改生成的场景代码
+python3 technical-animation/scripts/direct.py check work/search.json
+python3 technical-animation/scripts/direct.py build work/search.json --out build/search-v1
+# 双击 build/search-v1/preview.html；具备原有渲染依赖后导出 MP4：
+python3 technical-animation/scripts/render.py build/search-v1 --out build/search-v1/video.mp4
+```
+
+**实现边界：** 当前导演模式只支持 `partition-search`，恰好三组、选中组内三个逻辑段、每段两个示意候选、Top 1—3；20—40 秒、16:9、30/60fps、静音。不会自动套用到任意架构，也不代表完整 Milvus、真实延迟、物理节点映射或 ANN 精确召回。现有配方仍使用 `comic-lab`，新导演路径使用 `paper-explainer`。弱模型成功率和观众理解尚未实测。
+
+可复现检查见 [v0.3 验证记录](release-checks/v0.3/README.md)。旧版演示与浏览器回退策略保留，参考原视频及截图不提交到开源仓库。
+
 ## 动画效果展示
 
 ### DeepSeek Harness：插件如何协作 · 10s

@@ -4,7 +4,7 @@ description: Use when explaining technical mechanisms with comic-style animation
 license: MIT
 compatibility: Python 3.10+ for recipe compilation and offline HTML; Playwright/Chromium, FFmpeg and system CJK fonts for silent MP4 export. A host capable of files and commands is required. No model API or image service is bundled.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
   author: "Explain Motion contributors"
 ---
 
@@ -12,9 +12,23 @@ metadata:
 
 原名 Explain Motion；安装目录名保持 `technical-animation`。
 
-**默认使用配方，不要从零写动画。让动作解释因果，而不是给文字配动效。**
+**先匹配机制，再选择镜头路径。默认填写内容，不从零写动画；让动作解释因果，而不是给文字配动效。**
 
-## 最短路径
+## v0.3 导演路径：先缩小范围，再展开机制
+
+涉及显式分区、局部检索、并行候选汇总时，先读 [导演模式](references/editorial-mode.md)，使用已实现的 `partition-search`。只修改 [内容 JSON](directing/partition-search.json)，运行：
+
+```bash
+python SKILL_DIR/scripts/direct.py init --out PROJECT_DIR/source.json
+python SKILL_DIR/scripts/direct.py check PROJECT_DIR/source.json
+python SKILL_DIR/scripts/direct.py build PROJECT_DIR/source.json --out PROJECT_DIR/v1
+```
+
+它自动生成“概览 → 选中/变暗 → 保留父级并展开 → 并行工作/回传 → 候选排序 → 回到全局”六个镜头，保留查询和对象身份；大卡先收缩再重排，避免途中相撞。支持 `paper-explainer`、16:9、20—40 秒、30/60fps、无声；不是任意题材导演或自动分析视频的模型。MP4 使用下面同一个 `render.py`。
+
+不匹配时回到下列三套机制配方，不为追求画风硬套。所有模式均遵守下面的浏览器回退规则。根据 [真实参考观察](references/reference-milvus.md) 提炼手法，不分发参考视频、截图、音轨或创作者标识。新主题设计先明确“同一对象 → 发生什么变化 → 为什么要切到这个角度”，不要只让机器人一直晃动。
+
+## 原有机制配方的最短路径
 命令中的 `SKILL_DIR` 指本文件所在目录，`PROJECT_DIR` 指用户指定的新输出目录。先确定绝对路径，不假设当前工作目录。仅在缺少关键信息时询问。
 
 1. 读 [配方指南](references/recipe-mode.md)，选择**机制匹配**的配方：
@@ -34,7 +48,7 @@ metadata:
 
 ## 浏览器回退
 
-配方与高级模式共用此规则：
+配方、导演与高级模式共用此规则：
 
 - 用户指定浏览器时直接使用指定入口；其他情况按宿主的默认浏览器路由执行。
 - **Chrome 首次连接失败、超时、崩溃，或出现 `permission-blocked` / 远程调试授权等待时，立即停止这条连接路径，直接使用当前宿主提供的 ChatGPT／Codex 内置浏览器。** 不把排查 Chrome、运行 doctor、等待或反复点击“允许”作为继续制作的前置条件，也不另开无头 Chrome 来替代这次回退。切换使用已有任务授权，无需再次确认。
@@ -44,7 +58,7 @@ metadata:
 - 当前宿主确实没有内置浏览器入口，或尝试后缺少必需的素材访问、登录态或操作能力时，报告具体缺口，再选择能够完成该环节的已安装工具；只有必须由用户提供访问时才询问。浏览器切换不继承登录态或额外访问权限。
 
 ## 不可跳过的边界
-- 配方模式当前仅支持 **16:9、1920×1080、30/60fps、无音轨、comic-lab**。不支持的要求明确报错，不能偷换画幅、画风或删掉音频。
+- 原有三套配方当前仅支持 **16:9、1920×1080、30/60fps、无音轨、comic-lab**。不支持的要求明确报错，不能偷换画幅、画风或删掉音频。
 - 配方时序、对象和状态来自同一事件合同；**到达后才改变状态，成功后停止，结尾保留 2 秒**。不要编辑生成合同或源码绕过这条约束。
 - 配方只是原理示意，不执行真实模型/检索/数据库/示例代码。技术真实性、修复是否真的有效、证据是否支持回答，仍须根据用户材料/一手资料核验。
 - 不把上下文更新说成训练权重；不保证 RAG 回答正确；缓存示例假设同一键、未过期、未失效，不保证真实延迟或强一致性。

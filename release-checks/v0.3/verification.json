@@ -1,0 +1,65 @@
+{
+  "scope": "v0.3 partition-search directing addon",
+  "python_skill_tests": 70,
+  "new_javascript_tests": 12,
+  "original_motion_tests": "pass",
+  "browser": {
+    "cases": [
+      {
+        "frames_checked": 1440,
+        "failures": [],
+        "failure_count": 0,
+        "deterministic": true,
+        "name": "default",
+        "play": true,
+        "pause": true,
+        "seek": true,
+        "console_errors": []
+      },
+      {
+        "frames_checked": 1440,
+        "failures": [],
+        "failure_count": 0,
+        "deterministic": true,
+        "name": "max-text-first",
+        "play": true,
+        "pause": true,
+        "seek": true,
+        "console_errors": []
+      },
+      {
+        "frames_checked": 600,
+        "failures": [],
+        "failure_count": 0,
+        "deterministic": true,
+        "name": "30fps-last",
+        "play": true,
+        "pause": true,
+        "seek": true,
+        "console_errors": []
+      }
+    ],
+    "audience_test": false,
+    "weak_model_test": false,
+    "audio_review": false,
+    "passed": true
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "duration": 24,
+    "video_frame_count": 1440,
+    "audio": "none",
+    "video_decode": "pass",
+    "output_bytes": 1843612,
+    "output_sha256": "2cab80841aae2f315a372df1f857212b32bff63440636819cdaa3741d34d9afe",
+    "random_access_deterministic": true
+  },
+  "python": "3.13.5",
+  "reference": "BV19v8x6uEh8, user-provided upload, visual/subtitle sampling",
+  "reference_assets_in_repository": false,
+  "hosted_page_check": "not verified: HTTP preview navigation blocked by local browser policy",
+  "weak_model_benchmark": false,
+  "audience_study": false
+}

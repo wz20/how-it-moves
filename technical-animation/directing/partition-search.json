@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "pattern": "partition-search",
+  "title": "找一张图，需要搜遍整个库吗？",
+  "query": "找相似风景图",
+  "groups": [
+    {"id": "meme", "label": "表情包"},
+    {"id": "scenery", "label": "风景"},
+    {"id": "portrait", "label": "人像"}
+  ],
+  "selected_group": "scenery",
+  "segments": [
+    {"id": "s1", "label": "段 A", "candidates": [{"id": "img12", "score": 0.91}, {"id": "img07", "score": 0.72}]},
+    {"id": "s2", "label": "段 B", "candidates": [{"id": "img24", "score": 0.96}, {"id": "img18", "score": 0.81}]},
+    {"id": "s3", "label": "段 C", "candidates": [{"id": "img31", "score": 0.88}, {"id": "img36", "score": 0.67}]}
+  ],
+  "top_k": 3,
+  "takeaway": "先缩小范围，再汇总候选",
+  "duration": 24,
+  "fps": 60,
+  "aspect": "16:9",
+  "style": "paper-explainer",
+  "audio": "none"
+}
