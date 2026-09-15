@@ -1,8 +1,7 @@
-.venv/
 __pycache__/
 *.pyc
+.venv/
+.pytest_cache/
 node_modules/
-.DS_Store
-.env
-*.log
+work/
 build/

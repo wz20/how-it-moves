@@ -5,10 +5,16 @@ The default is **no assumed format**. Capture the user's choice once. CLI values
 | Output | Deliverable | Specific behavior |
 |---|---|---|
 | HTML | `animation.html` | Inline artwork and SVG, deterministic play/pause/seeking; no external image/font/CDN dependencies |
-| Video | `video.mp4` | The same SVG scene and timebase captured at 30/60fps; H.264/yuv420p, silent; ffprobe and full decode checks |
+| Video | `video.mp4` | The same SVG scene and timebase captured at 30/60fps; H.264/yuv420p; silent by default or explicit local audio; ffprobe and full decode checks |
 | SVG image | `illustration.svg` | Static reviewed moment, separate image/text/path/group layers; full viewBox and accessible title/description |
 
 The final folder also contains `delivery.json` and `asset-history-entry.json`, not unrequested media. Output is first built in an isolated temporary folder and published only after success; existing destination folders are refused. A failed MP4 does not silently deliver the other requested outputs as a completed multi-format job.
+
+## Production modes and evidence
+
+For v0.8, animated HTML/MP4 require a typed discrete mechanism plus executable operations. A static SVG-only request uses an explicit relation contract and no motion quota. An SVG snapshot requested alongside animation shares its reviewed event state. Parameter-driven teaching HTML is not implemented by adding playback controls; request a tested domain adapter rather than mislabelling a player.
+
+All official exports require three separate quality verdicts and per-event/ablation evidence. Sparse review and dense export use the same software/full-raster browser configuration so tile-cache antialiasing does not invalidate approved pixels. Cross-browser/font/platform equality is not guaranteed; review anew in the target environment.
 
 ## Start
 
@@ -18,7 +24,7 @@ python3 technical-animation/scripts/create.py init \
   --topic "Explain the mechanism" --formats html svg --out work/my-topic
 ```
 
-Fill `story.json` as described in [the contract](production-contract.md). Design topic-specific visual concepts, generate real assets, then:
+Fill typed events and run `create.py plan` / `create.py asset-plan` before generating artwork, as described in [the contract](production-contract.md). Then design topic-specific concepts and generate the required real assets:
 
 ```bash
 python3 technical-animation/scripts/create.py prompts work/my-topic --out work/my-topic/generation-briefs.md
@@ -48,6 +54,16 @@ python -m playwright install chromium
 # Install ffmpeg through the OS package manager for video only.
 ```
 
-The scene size can be any even dimensions from 320 to 4096, with 30/60fps and 1–180 seconds. This is a transport limit, not a claim that every composition or length is good. Video is silent; a user-requested soundtrack needs a genuinely configured audio adapter, not an empty audio stream.
+The scene size can be any even dimensions from 320 to 4096, with 30/60fps and 1–180 seconds. This is a transport limit, not a claim that every composition or length is good. Video is silent by default. v0.7 supports explicit local soundtrack tracks as described in performance-contract.md; real audio is verified and reviewed, not replaced with an empty stream. Audio probing needs ffprobe even for an HTML-only audiovisual project.
 
 `review` produces `pending`. Final export checks actual asset files, source fingerprint and every required evidence image; changed content/art/exporter invalidates approval. MP4 compares sampled rendered pixels to those reviewed in the same environment. Switching browser/font environments requires fresh review, not bypassing the gate.
+
+## v0.7 performance and sound
+
+`performance` compiles ports, hinges, occlusion and discrete state changes into the same scene used by all formats. HTML embeds real local audio, and MP4 mixes explicit trim/start/gain tracks; SVG remains static and silent. Two-track audio is not automatic TTS/ASR/beat matching. See [performance contract](performance-contract.md).
+
+Review fingerprints include the operation compiler and soundtrack sources. A rig, cue, state image or audio change requires fresh review. The semantic runtime is compatible with old manual-layer scenes; static-only scenes do not need a performance plan.
+
+## Client handoff is separate
+
+`export` produces a reviewed artifact. For academic work, verify the source ledger before export and obtain instructor/subject approval of those exact media before `handoff`. Approval cannot be inferred from ffprobe, screenshot hashes or an autonomous visual reviewer. Client uploads and public GitHub publication are separate, default-denied permissions.

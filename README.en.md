@@ -1,3 +1,13 @@
+<!-- HOW-IT-MOVES:CURRENT:BEGIN -->
+## Current production entry: v0.8 · Mechanism-first
+
+Typed events precede action-derived asset plans and real image generation. Per-event visual evidence is separate from engine tests. Academic handoff needs a source ledger and separate instructor sign-off.
+
+[Setup and workflow](technical-animation/README.md) · [Skill](technical-animation/SKILL.md) · [Capabilities and limits](technical-animation/references/capabilities.md)
+
+Older showcase media remain historical, not newly certified by v0.8. No universal physics or learning-outcome claim.
+<!-- HOW-IT-MOVES:CURRENT:END -->
+
 # How It Moves
 
 **Topic-specific artwork, causal motion, and HTML / MP4 / SVG delivery.**

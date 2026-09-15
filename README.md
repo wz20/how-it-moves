@@ -1,3 +1,13 @@
+<!-- HOW-IT-MOVES:CURRENT:BEGIN -->
+## 当前制作入口：v0.8 · 机制优先
+
+先建立事件合同，再推导素材拆分和实际生图；逐事件检查前态、接触、后果及消融视图。高校项目增加来源/公式/目标台账与独立教师签核。
+
+[安装与完整流程](technical-animation/README.md) · [Skill](technical-animation/SKILL.md) · [能力和未验证边界](technical-animation/references/capabilities.md)
+
+下方早期案例作为历史展示保留，不代表已通过 v0.8 新门禁。v0.8 不宣称任意学科自动仿真或学习效果已经验证。
+<!-- HOW-IT-MOVES:CURRENT:END -->
+
 <div align="center">
 
 # How It Moves · 让原理动起来

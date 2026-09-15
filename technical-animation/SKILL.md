@@ -1,74 +1,91 @@
 ---
 name: technical-animation
-description: Use when producing illustrated technical explainers as interactive HTML, MP4 video or SVG images, especially for new topics that must not collapse into reused mascots, diagrams or slides.
+description: Use when making illustrated technical or educational explainers as HTML, MP4 or SVG, especially when new subjects need observable causal actions or university courseware needs source and teacher review.
 license: MIT
-compatibility: A host with image generation, visual inspection and local commands. Python 3.10+ and Pillow; Playwright/Chromium for review capture, plus FFmpeg/ffprobe for MP4. No model API or provider credentials are bundled.
+compatibility: A host with real image generation, visual inspection and file commands; Python 3.10+, Pillow, Playwright/Chromium; FFmpeg/ffprobe for video/audio. No image provider, credentials, physics solver or teacher approval is bundled.
 metadata:
-  version: "0.6.0"
+  version: "0.8.0"
   author: "How It Moves contributors"
 ---
 
-# How It Moves · 按主题生成，而不是固定素材换标签
+# How It Moves · 先有机制，再让新素材把它演出来
 
-**先决定交付形式，理解机制，再为本主题设计并生成素材。能复用的是画风、动作和工具，不是默认复用那几个机器人、终端和柜子。**
+**对象执行操作，操作带来可见变化，镜头帮助观察变化。漂亮图片、可播放文件和几何运动都不能单独证明讲解完成。**
 
-## 1. 先选输出，不把所有请求都当视频
+这是完整的 v0.8 发布包，不是对任意题材、任意模型或学习效果的保证。支持能力、未验证项目见 [能力边界](references/capabilities.md)。
 
-支持 `html`、`video`（命令也接受 `mp4`）、`svg`，可多选。用户已经指定时直接执行；没有指定时只问一次“要可交互 HTML、MP4 视频、SVG 图片，还是多种？”不要反复确认已有信息。
+## 1. 接单与输出
 
-- **HTML**：独立离线文件，播放、暂停、逐帧拖动；实际图片嵌入，不依赖 CDN。
-- **视频**：MP4，与 HTML 使用同一素材、对象 ID 和时间线；仅此格式需要 FFmpeg。当前适配器无声，不偷偷丢弃用户要求的音轨。
-- **SVG 图片**：独立静态文件，选择已审阅的 `poster_frame`。图片、文字、路径分别成层，可编辑文字和结构；生图 PNG/WebP/JPEG 以图像层嵌入，**不是纯矢量、不是自动描摹，更不能把整张截图套进 SVG 冒充可编辑插画**。
+先读取已有资料和明确要求，不反复询问。缺项一次集中确认：受众/先修知识、一个可检验的学习目标、来源与简化边界、时长/画幅、输出形式、声音、客户验收人。高校/课程/教学客户使用 `--profile academic`，填写 [课程需求单](templates/COURSE_WORKORDER.md)。
 
-仅要 SVG 就设计一张完整、好看的说明插画；不要做 42 秒动画再截一帧糊弄。多格式交付可共享艺术资产与核心语义，但新画幅必须重构图。详细入口见 [输出格式与命令](references/output-formats.md)。
+选择 `html`、`video`（mp4 别名）、`svg`，可多选。HTML 播放条不是参数教学交互；当前参数交互须另做经测试的领域适配器，不伪称已支持。SVG 是静态分层混合图：栅格素材仍是栅格，文字/路径可编辑，不冒称纯矢量。
 
-## 2. 每个新主题都重新进行视觉构思
+## 2. 新项目的强制制作顺序
 
-先读 [主题联想与素材生成](references/topic-design.md)，执行：
+1. **核验机制。** 明确对象、输入、状态、条件、结果、不变量。课程中的公式、单位、假设和适用范围须有来源与学科审阅；不得根据动画速度编造性能或把示意当真实仿真。
+2. **先建事件合同。** 在没有图片时写 `mechanism` 与 `performance.actions`。每个关键事件有 requires/after/when、类型化 effects 和 observation。`change/consequence` 是说明，不是状态真相。
+3. **操作推导素材。** 运行 `plan` 与 `asset-plan`。从必须看见的动作决定 body、必要状态、部件、入口与遮挡；不机械拆开每件物体。当前容器适配器的 gate/front 不意味着所有技术都要画成柜子。
+4. **重新进行主题美术设计。** 提出三套实质不同的视觉世界，说明解释力及误导风险。复用画风/操作，不默认复用角色、柜子或整套构图。见 [主题设计](references/topic-design.md)。
+5. **实际生图与看图。** 用真实工具生成独立素材和必要状态，记录真实来源；工具未披露模型名就如实填写。缺少工具或合格素材 `ASSET_BLOCKED`，不能以框＋文本或整页插画推拉降级交付。
+6. **测量并绑定。** 对真实图片确认共同画布、视角、尺寸、支点、接触点、前景遮挡与状态图。不能把生成前填的坐标冒充测量。使用 [表演合同](references/performance-contract.md) 与 [机制合同](references/mechanism-contract.md)。
+7. **编译并观察。** `check` 核对类型化状态与实际操作编译器的结果，`timeline` 给出 start/contact/commit/end。状态变化不得只在字幕中出现，不能靠推进镜头替代对象操作。
+8. **分层审阅。** 查看全部事件的前态、接触、提交、后态及连续过程。再看 labels-only 和 mechanism-only 视图；保留必要标签和有机制意义的粒子，去掉长解释、纯装饰。不能把消融视图的像素差当审美评分。
+9. **按格式输出与客户验收。** 经 `export` 生成已审阅媒体；高校客户交付另须教师/学科负责人对同一版本签核。未经教师签核的预览不是客户验收完成。
 
-1. 用一句话确认观众应该理解的机制；确定实例、状态、因果、不可误画的事实。
-2. 提出 **3 套真正不同的视觉世界**，各写“为什么合适、可能误导什么”，选择最有解释力的一套。不是同一个柜子换三种颜色，也不是从 Skill 内置图标表查主题。
-3. 给每个技术实体写：**技术含义 → 具体主体 → 操作 → 可见后果 → 必须保持的身份/事实**。主角不一定是人物；道具也不一定是机器。根据主题决定材质、空间、轮廓与光线。
-4. 查看当前工作区以往交付的 `asset-history-entry.json`，将相关记录放入 `history`，避开最近用过的主视觉与素材。默认 `fresh`：为当前 `project_id` 实际生成新图。改标题、改文件名、改颜色不能算新素材。
-5. 用宿主**真实可用的生图工具**生成独立主体、可动部件和必要状态；记录真实 tool/model/run reference/prompt 与文件哈希。指定模型不可用就说明，不能伪称调用。
-6. 查看素材和代表性构图，再制作动作。生图时不烘焙大段技术文字；数值、代码、标签和必要路径由程序绘制。
+## 3. 命令路径
 
-**跨项目复用默认拒绝。** 只有用户明确要求同一个品牌角色/素材，才能在 `reuse_consent` 中记录具体 asset IDs 和真实请求出处。沿用一种画风不等于允许复用图片。同一项目内，同一对象的图、姿势和状态应该保持一致，不要每个镜头换主角。
-
-缺少生图能力/真实素材：`ASSET_BLOCKED`，留下分镜和生成提示，停止最终交付。不能切换到旧矢量案例、通用图标、框＋文本或整图平移充数。
-
-## 3. 当前制作入口
-
-`SKILL` 是本目录，`PROJECT` 是新目录。先初始化，填写完整的主题概念与分镜，生成真实素材；初始化不是成品。
+`SKILL`、`PROJECT`、`DELIVERY` 使用真实绝对路径；输出均为新目录。
 
 ```bash
-python SKILL/scripts/create.py init --topic "要讲解的机制" --formats html svg --out PROJECT
-# 填写 story.json 中 concept/style，按真实主题构思，不复制示例世界。
-python SKILL/scripts/create.py prompts PROJECT --out PROJECT/generation-briefs.md
-# 宿主调用实际生图工具。登记真实 assets、generation、shots、layers。
+python SKILL/scripts/create.py init --topic "明确的教学机制" --formats html video svg --profile academic --out PROJECT
+# 填 course 的来源/目标，mechanism 的类型化状态与事件，performance.actions；此时不需要图像。
+python SKILL/scripts/create.py plan PROJECT --out PROJECT/event-plan-v1.json
+python SKILL/scripts/create.py asset-plan PROJECT --out PROJECT/asset-plan-v1.json
+# 再按主题填写 concept/style，生成必要主体/部件/状态，不烘焙整页文字。
+python SKILL/scripts/create.py prompts PROJECT --out PROJECT/generation-briefs-v1.md
+# 宿主真实生图并看图，登记 assets/layers，测量 performance.rigs。
 python SKILL/scripts/create.py check PROJECT
+python SKILL/scripts/create.py timeline PROJECT --out PROJECT/timeline-v1.json
 python SKILL/scripts/create.py review PROJECT --folder review-v1
-# 实际检查 review-v1 的图与 draft.html 的动作；记录每镜头具体发现，不能自动批准。
-python SKILL/scripts/create.py export PROJECT --formats html svg \
-  --review PROJECT/review-v1/review.json --out NEW_DELIVERY
+# 实际查看 draft.html：逐事件播放、完整/少文字/机制视图；有声则听音。
+# review.json 初始都是 pending；必须由真实视觉审阅者填写各层及逐事件发现。
+python SKILL/scripts/create.py export PROJECT --review PROJECT/review-v1/review.json --out DELIVERY
+# 教学客户：准备待签核记录，交给实际教师/学科负责人审阅，不让 Agent 代签。
+python SKILL/scripts/create.py handoff-init PROJECT --delivery DELIVERY --out PROJECT/teacher-review-v1.json
+python SKILL/scripts/create.py handoff PROJECT --delivery DELIVERY --teacher-review PROJECT/teacher-review-v1.json --out NEW_CLIENT_DELIVERY
 ```
 
-视频改选 `video`；三种一起选 `html video svg`。只生成请求的形式，不擅自增加 MP4。新目录输出，不覆盖已批准版本。读 [数据合同](references/production-contract.md)，不要猜字段；默认可用命名位置与关键帧，不要求宿主写动画代码。讲解结构和新题材的视觉设计仍由宿主负责，不声称任意弱模型输入标题就一定出优秀作品。
+只要 SVG：初始化 `--formats svg`，`presentation=static`，写结构/关系与 observation，不制造无意义的时间操作。非教学客户可用 general；不得为绕过课程验收把高校项目偷偷改成 general。
 
-## 4. 三种形式共用质量线
+## 4. 能做与不能冒称能做
 
-- 主体必须实际出现在画面；背景或角落吉祥物不算。若去掉文字就完全不知道对象是什么，返工。
-- 不是给每个矩形画眼睛、加螺丝就合格；不是生一整张 PPT 再当图片移动。
-- 动画必须展示操作及其后果；位移/缩放只是实现手段。静态 SVG 应用对象关系、局部结构或同一实例的前后状态说明机制，不靠段落列表。
-- 检查真实素材、项目新鲜度、完整镜头、画面中的对象尺度、可读性及实际审片证据。`check` 通过不等于漂亮或技术事实正确。
-- `review` 只生成 `pending`。人或具备视觉能力的 Agent 看图并检查动作后，才能填写批准和具体发现。文字模型不能冒充看图。
-- 改素材、文字、时间线或导出器后审片失效；所有 final exports 均经 `create.py export`。不能换格式、换脚本来绕过不合格结果。
-- 当前布局面积检查是启发式，不能识别所有“PPT 栅格化”“不相关大图”或遮挡。必须用视觉审片补足，不能承诺绝不出现任何 badcase。
+- 已有五类操作：store、retrieve、transfer、verify、replace。transfer 可用明确的新状态表达持久接收；不再只能做接收方的尺度脉冲。
+- 类型化布尔/枚举/集合/有单位的输入，受限条件与有限分支；状态效果当前为 set/add/remove，绑定到真实 rig 的 state/contents/copy/receipts。
+- 依赖可引用此前事件的 contact/commit/end（也支持 start）；执行仍顺序排期，不能把它说成并行 DAG。
+- 同一素材与事件可输出 HTML/视频/混合 SVG；本地音轨、SRT 时点、同源寻帧与 v0.7 动作保持。
+- **没有**通用物理仿真、自动科学建模、自动分割/配准、通用教学参数交互、ASR/TTS/音乐节拍识别、IK/3D或增量渲染。连续物理主题要先定义并验证领域适配器，不强套容器。
+- 旧几何/矢量案例仅用于内部诊断和历史重放。`topic_output.html/svg` 是低层构建函数，不是生产交付入口；正式 v0.8 交付必须经 `create.py export`。不存在跳过机制或审阅的最终交付选项。
 
-## 5. 浏览器、历史案例与事实边界
+## 5. 三层质量与修复
 
-优先用户指定的浏览器，否则用宿主默认入口。Chrome 首次连接失败/授权阻塞就停止该路径，改用实际提供的内置浏览器；不循环请求权限，不猜 API，不公开整个工作区。预览能力与导出能力分开验证；缺少逐帧导出时仅对导出环节采用已安装的确定性工具，不继承登录态。
+**技术层：**文件、实际尺寸/帧数、播放/暂停/寻帧、解码、素材加载与来源指纹。  
+**事件层：**前置条件、对象身份、分支、接触后提交、类型化效果与运行库结果一致。  
+**视觉层：**实际主体参与操作、结果可见、去掉解释/装饰仍能辨认关键变化；足够阅读时间与合理观察顺序。
 
-`illustrate.py`、`recipe.py`、`direct.py` 和原有案例保留为历史作品与机制/动作参考，**不再是新任务绕过主题构思和生图的默认入口**。不要把它们的三个固定素材世界照搬到 Mem0、事务、网络或任意新主题。
+帧数、位移阈值或 DOM 属性不能代替视觉审阅。实际图层和像素贡献检查会拦截结果被完全遮住等问题，但不能识别所有语义错误或审美失败。每个事件允许有建立/阅读/回顾的静止阶段，不要求一直动。
 
-不把上下文更新画成训练权重；不凭动画速度声称性能倍数；不把模拟说成真实运行。来源记录不是防伪签名，程序测试不是美术验收/弱模型评测/观众学习测试。本轮实现未捆绑生图服务或声称调用某种模型；工具选择、费用和公开发布仍遵守用户授权。
+```bash
+python SKILL/scripts/create.py diagnose PROJECT --review PROJECT/review-v1/review.json --out PROJECT/repair-v1.json
+```
+
+只修受影响的事件、素材和衔接，再产生新审阅；修改素材/声音/代码/状态后旧批准失效。两轮仍卡住应升级给有视觉能力的作者或教师，不降低阈值，不伪造来源、观察或批准。
+
+## 6. 客户安全与验收底线
+
+来源必须可追溯到具体页/节；claim=verified 不意味着脚本已经核验事实。用客户材料做生图输入、对外发布或加入开源仓库都需相应授权，默认不允许；最小化材料与个人信息。客户课件、照片、音轨、审片意见和账户凭证不进入公共仓库。
+
+高校 handoff 使用单独的 teacher-review.json，绑定源码指纹和实际媒体 manifest。脚本不生成教师签字、不证明签名真实性，学科验收责任仍需真实流程。测试夹具明确阻塞客户 handoff，不能把合成程序测试当真实生图作品。
+
+保留原浏览器路由：指定入口优先；Chrome 首次连接/授权失败时停止该路径，使用宿主实际提供的内置浏览器；不反复索权、猜 API 或公开工作区。预览与确定性导出分开验证。
+
+安装/复现看 [README](README.md)；课程交付看 [Academic delivery](references/academic-delivery.md)；来源、图像生成、机制正确、视觉通过、弱模型成功率、观众学习效果分别记录，未测试就明确 `not_tested`。

@@ -1,3 +1,10 @@
+# v0.8.0
+
+- Add typed mechanism events and action-derived asset plans.
+- Bind declared effects to compiled operations and visible outcome evidence.
+- Add layered event review, local audio support and academic handoff.
+- Preserve historical examples; see technical-animation/references/capabilities.md for supported scope.
+
 # v0.6.0
 
 - Add topic-specific visual design, asset provenance and reuse validation.

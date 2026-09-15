@@ -1,11 +1,16 @@
-# Topic scene contract v1
+# Topic scene contract v1 · v0.8 production rules
 
 Use `create.py init`; fill a single `story.json`. No arbitrary JavaScript, SVG markup or external URLs are executable input. The same contract drives SVG, HTML and MP4. There is no fixed Agent/RAG/cache layout or topic-to-asset lookup.
+
+Official animation export now also requires the [typed mechanism contract](mechanism-contract.md). The keyframe fields below are rendering primitives, not evidence of an explained mechanism. A low-level geometry check passing never certifies production.
 
 ## Fields
 
 | Field | Meaning |
 |---|---|
+| `presentation` | `animated` or `static`; general parameter-driven `interactive` is rejected until a tested domain adapter exists |
+| `mechanism` | typed discrete events for animation; entity relations for static SVG |
+| `profile`, `course` | `general` or `academic`; academic requires a course evidence ledger |
 | `schema_version` | integer `1` |
 | `project_id` | generated project identity; do not recycle it to disguise old assets |
 | `topic`, `style` | teaching topic and concrete art direction; no unfinished placeholders |
@@ -56,3 +61,17 @@ The validator checks actual image alpha bounds and transformed screen footprint 
 A generated-asset receipt is an auditable claim, not a provider signature; matching a project ID cannot prevent forgery. A hostile host can write another renderer. Do not assert that code alone guarantees beauty, truthful provenance, cross-model success or audience comprehension. When checks fail, repair the art/scene, recapture and re-review; never rename drafts or bypass the export route.
 
 Final HTML omits generation prompts, private run references and workspace history from its player payload. SVG keeps only minimal project/format metadata. Keep detailed origins in the private editable project unless the user explicitly wants them published.
+
+## v0.7 optional performance extensions
+
+Top-level `performance` and `soundtrack` are now accepted; other unknown top-level fields still fail. `performance` has version/rigs/actions/cues. It is compiled, not executable JSON. Do not manually provide compiled_actions, compiled_rigs or performance_initial. See [the full contract](performance-contract.md).
+
+Assets may add `entity` to link several distinct registered state images to one concept entity. Image layers accept an optional normalized `box`, normalized `pivot`, verified `image_size`, and discrete `asset_keys`; numeric keyframes may use x/y and `ease: linear|smooth`. New ordinary producers should let the operation compiler emit these details rather than write them.
+
+Bound performance layers reject conflicting hand-authored keys and visibility ranges; state images must have equal artboard dimensions. Transform limits, freshness, image-area and text/readability checks remain enforced. Source validation does not prove that drawings are registered semantically—visual inspection remains necessary.
+
+## v0.8 production evidence
+
+Layers may declare `purpose`: subject, mechanism, label, narration, decoration or camera. Explain-only text can be hidden without hiding necessary labels; mechanism-only review also hides decoration and nonessential camera layers. Do not mislabel decoration as mechanism to pass the review.
+
+`create.py review` generates actual full/reduced/ablation captures, event observations and pending reviews. Official `export` requires approved technical/event/visual records, unchanged evidence, real visible state witnesses and the same source fingerprint. It exports reviewed media, not an inferred instructor endorsement. Academic customer handoff additionally uses [separate subject sign-off](academic-delivery.md).

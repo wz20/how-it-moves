@@ -1,5 +1,9 @@
 # Topic-first art direction / 每个主题有自己的视觉世界
 
+## Event planning comes before art
+
+First run `create.py plan` on typed events and `create.py asset-plan` on the operations, even with no images or rigs. Use those generated requirements to choose a world and split only the parts that really perform an event. Do not create a full illustration first and try to salvage motion later. See [mechanism contract](mechanism-contract.md). Asset-plan entries describe current adapter capabilities, not compulsory cabinets or characters.
+
 ## Reuse the visual language, not the same nouns
 
 A style bible can preserve contour weight, palette, camera, material and light. Motion primitives can preserve timing and collision handling. Neither authorizes silently copying the last robot, terminal, binder or drawer. There is deliberately **no keyword-to-prop catalog** in the new initializer.
@@ -45,3 +49,9 @@ The host reads prior `asset-history-entry.json` records from the relevant worksp
 Do not ask a weaker agent to invent coordinates, easing and a complete renderer. Ask it to fill semantic fields, call the image tool, inspect the returned files, assign named slots, and specify a small sequence of operation keyframes. The renderer interpolates and shares those states across formats. Use short captions and few simultaneous subjects; decline production rather than inventing generated assets.
 
 A text-only agent cannot sign off visual quality. Use a vision-capable review step or the user. Three long prompts and a passing schema are not an art review.
+
+## v0.7: design art that can perform
+
+Before final generation, identify the necessary contact surface, hinge, opening, foreground edge and visible states for each selected operation. Supply body/state/gate/front layers on a shared artboard, including transparent margins; these are parts of the newly devised subject, not a preselected machine kit. Inspect them against [the rig contract](performance-contract.md).
+
+The compiler replaces repeated coordinate/choreography work. It does not generate or segment images, infer a new visual metaphor, identify a hinge from pixels, or prove an analogy accurate. A vision-capable agent or user must locate a small set of real anchors. Reuse operation recipes, not previously generated topic art.

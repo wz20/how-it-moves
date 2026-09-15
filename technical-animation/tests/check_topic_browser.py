@@ -14,6 +14,10 @@ def approve_fixture(path):
     for s in r['shots']:
         s['verdict']='approved'
         for k in s['findings']:s['findings'][k]='Synthetic integration fixture assertion only; no artwork quality is claimed.'
+    r['quality_layers']={k:'approved' for k in ('technical','event','visual')}
+    for e in r.get('events',[]):
+        e['verdict']='approved';e['transition_inspected']=True
+        e['findings']={k:'Synthetic integration harness only; actual production requires visual inspection.' for k in e['findings']}
     path.write_text(json.dumps(r))
 
 
@@ -44,30 +48,15 @@ def run():
             assert page.evaluate('window.semanticState.frame')==40;checked.append('seek slider')
             assert not errors;checked.append('zero browser errors')
         finally:b.close();pw.stop()
-        rp=out.prepare_review(data,root,root/'review')
-        assert json.loads(rp.read_text())['verdict']=='pending';checked.append('review never auto-approves')
-        approve_fixture(rp)
-        # Route checks: unrequested formats must not be generated.
-        for selected in (['svg'],['html'],['video'],['html','video','svg']):
-            dest=root/('-'.join(selected))
-            report=out.export(data,root,dest,selected,rp)
-            expected={'html':'animation.html','svg':'illustration.svg','video':'video.mp4'}
-            assert set(report['files'])=={expected[s] for s in selected}
-            assert set(p.name for p in dest.iterdir())==set(report['files'])|{'delivery.json','asset-history-entry.json'}
-            if 'video' in selected:
-                v=report['video'];assert v['streams'][0]['nb_read_frames']=='60';assert len(v['streams'])==1
-            checked.append('export only '+','.join(selected))
-        changed=json.loads(json.dumps(data));changed['style']+=' Changed.'
-        try:out.export(changed,root,root/'stale',['svg'],rp)
-        except m.Problem as e:assert e.code=='E_REVIEW_STALE'
-        else:raise AssertionError('stale approval accepted')
-        checked.append('source changes invalidate review')
-        # No review can be re-used with altered capture bytes.
-        r=json.loads(rp.read_text());(root/r['evidence'][0]['path']).write_bytes(b'changed')
-        try:out.export(data,root,root/'altered',['html'],rp)
-        except m.Problem:pass
-        else:raise AssertionError('edited evidence accepted')
-        checked.append('evidence tampering blocks export')
+        # Compatibility preserves draft geometry, NOT a final-delivery bypass.
+        try:out.prepare_review(data,root,root/'review')
+        except m.Problem as e:assert e.code=='E_MECHANISM_REQUIRED'
+        else:raise AssertionError('legacy geometry accepted as current production review')
+        checked.append('legacy draft playback does not qualify as mechanism production')
+        try:out.export(data,root,root/'final',['html'],root/'fake-review.json')
+        except m.Problem as e:assert e.code=='E_MECHANISM_REQUIRED'
+        else:raise AssertionError('legacy geometry bypassed final mechanism gate')
+        checked.append('legacy geometry cannot bypass new final export even with a review filename')
     return checked
 
 if __name__=='__main__':

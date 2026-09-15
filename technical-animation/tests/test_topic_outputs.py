@@ -133,6 +133,8 @@ class TopicTests(unittest.TestCase):
         self.d['layers'][0]['keys'][0]['scale']=float('nan')
         with self.assertRaises(m.Problem): self.valid()
     def test_no_outputs_without_review(self):
+        self.d['formats']=['svg'];self.d['presentation']='static'
+        self.d['mechanism']={'version':1,'kind':'static','relations':[{'from':'source','to':'tool','relation':'inspection','observation':'The lens faces the actual surface.'}]}
         with self.assertRaisesRegex(m.Problem,'E_REVIEW'): out.export(self.d,self.root,self.root/'out',['svg'])
         self.assertFalse((self.root/'out').exists())
     def test_prompt_brief_is_topic_specific(self):

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "not_run",
+  "purpose": "Same model, mechanism, source facts, duration and image budget; blind evaluation, not marketing scores.",
+  "systems": [
+    "How It Moves v0.8",
+    "Remotion plus official skills (pin actual version)",
+    "HyperFrames plus official skills (pin actual version)"
+  ],
+  "tasks": [
+    {
+      "id": "feedback",
+      "mechanism": "A failure changes the next action; repair is followed by verification",
+      "forbidden_inference": "context change trains model weights"
+    },
+    {
+      "id": "retrieval",
+      "mechanism": "Retrieve a copy, preserve the original and its identity",
+      "forbidden_inference": "retrieval always guarantees a correct answer"
+    },
+    {
+      "id": "reclamation",
+      "mechanism": "Reachability, retention and reclamation remain distinct",
+      "forbidden_inference": "old objects are automatically unreachable"
+    },
+    {
+      "id": "binary-search",
+      "mechanism": "A comparison narrows one persistent search range",
+      "status": "not_run",
+      "adapter_status": "not claimed implemented"
+    },
+    {
+      "id": "loss-and-ack",
+      "mechanism": "Delivery, receipt, failure and retry keep message identity",
+      "status": "not_run",
+      "adapter_status": "finite authored branch only; no general networking simulator"
+    },
+    {
+      "id": "tank-control",
+      "mechanism": "A control input affects a bounded continuous state",
+      "status": "not_run",
+      "adapter_status": "continuous domain adapter not implemented; reject rather than fake"
+    }
+  ],
+  "metrics": [
+    "mechanism_errors",
+    "asset_appeal",
+    "causal_action_readability",
+    "identity_continuity",
+    "pacing_and_audio",
+    "viewer_answers",
+    "manual_repair_rounds",
+    "generation_calls",
+    "elapsed_seconds",
+    "actual_cost",
+    "completed_within_budget",
+    "new_specialized_code_lines",
+    "blocked_without_repair",
+    "review_disagreement"
+  ],
+  "results": null,
+  "note": "Reclamation is not a ready-made engine operation. Do not relabel store/retrieve to claim support. No provider, speech service, paid evaluation or real model comparison has been run by this file."
+}

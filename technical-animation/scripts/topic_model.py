@@ -102,6 +102,18 @@ def prompts(data):
             'Generate only states necessary for this operation. Preserve identity across states in this project.',
             'No embedded paragraphs, title, arrows, dashboard, watermark or full-slide composition.',
             'Avoid: '+', '.join(c['avoid']),f'Metaphor boundary: {world["risk"]}.']
+    if data.get('performance'):
+        lines += ['','## Animatable asset requirements (not optional decoration)',
+            'All state/body/front/gate layers of one rig share a registration canvas, camera, scale and lighting.',
+            'Do not independently crop the door/mask. Transparent margins locate the hinge and contact ports.',
+            'Generate masks and movable parts as separate images, never bake the whole explainer into one poster.']
+        for r in data['performance'].get('rigs',[]):
+            lines += ['',f'Rig {r.get("id")}: artboard {r.get("artboard")}; ports {r.get("anchors")}',
+                f'State variants: {r.get("states",{})}. Gate: {r.get("gate")}. Foreground mask: {r.get("front")}. Probe: {r.get("probe")}.',
+                'These coordinates must be checked against the actual artwork; they are not image-model guarantees.']
+    if data.get('mechanism'):
+        from action_requirements import brief
+        lines.append(brief(data))
     return '\n'.join(lines)+'\n'
 
 
@@ -118,7 +130,7 @@ def layer_state(layer, frame, data):
     if typ=='text' and slot in TEXT_SLOTS:
         cx,cy=TEXT_SLOTS[slot]; w=h=0
     else:
-        x,y,w,h=SLOTS[slot]; cx=x+w/2; cy=y+h/2
+        x,y,w,h=layer.get('box',SLOTS[slot]); cx=x+w/2; cy=y+h/2
     base={'x':cx*data['width'],'y':cy*data['height'],'scale':layer.get('scale',1),
           'rotate':layer.get('rotate',0),'opacity':layer.get('opacity',1)}
     points=[]; last=dict(base)
@@ -127,7 +139,7 @@ def layer_state(layer, frame, data):
         if 'slot' in key:
             x,y,_,_=SLOTS[key['slot']]; sw,sh=SLOTS[key['slot']][2:]
             p.update(x=(x+sw/2)*data['width'],y=(y+sh/2)*data['height'])
-        for k in ('scale','rotate','opacity'):
+        for k in ('x','y','scale','rotate','opacity'):
             if k in key:p[k]=key[k]
         points.append((key['frame'],p)); last=p
     if points:
@@ -136,11 +148,28 @@ def layer_state(layer, frame, data):
         else:
             for (a,p),(b,q) in zip(points,points[1:]):
                 if a<=frame<=b:
-                    t=(frame-a)/(b-a); t=t*t*(3-2*t)
+                    t=(frame-a)/(b-a)
+                    dest=next(k for k in layer.get('keys',[]) if k['frame']==b)
+                    if dest.get('ease','smooth')!='linear':t=t*t*(3-2*t)
                     base={k:p[k]+(q[k]-p[k])*t for k in p}; break
     base['opacity']*=int(layer.get('start',0)<=frame<layer.get('end',round(data['duration']*data['fps'])))
     base['width']=w*data['width']; base['height']=h*data['height']
+    base['asset']=layer.get('asset')
+    for k in layer.get('asset_keys',[]):
+        if frame>=k['frame']:base['asset']=k['asset']
+    iw,ih=layer.get('image_size',[base['width'] or 1,base['height'] or 1]);fit=min(base['width']/iw,base['height']/ih)
+    px,py=layer.get('pivot',[.5,.5]);base['pivot_x']=(px-.5)*iw*fit;base['pivot_y']=(py-.5)*ih*fit
     return base
+
+
+def resolved(data):
+    if data.get('mechanism'):
+        from mechanism_core import resolve
+        return resolve(data)
+    if 'performance' not in data:return data
+    from perform_core import compile_performance
+    return compile_performance(data)
+
 
 
 def union_area(rects):
@@ -158,7 +187,7 @@ def union_area(rects):
 def validate(data, root):
     require(isinstance(data,dict),'E_SCHEMA','expected JSON object')
     allowed={'schema_version','project_id','topic','formats','width','height','fps','duration','poster_frame','style',
-             'concept','history','reuse_consent','assets','shots','layers','background'}
+             'concept','history','reuse_consent','assets','shots','layers','background','performance','soundtrack','mechanism','presentation','profile','course'}
     require(not set(data)-allowed,'E_FIELD','unknown fields: '+','.join(sorted(set(data)-allowed)))
     require(type(data.get('schema_version'))==int and data['schema_version']==1,'E_SCHEMA','schema_version must be 1')
     string(data.get('project_id'),'project_id',80); fmt=formats(data.get('formats'))
@@ -170,6 +199,14 @@ def validate(data, root):
     require(total==int(total),'E_TIMELINE','fractional frame count'); total=int(total)
     require(type(data.get('poster_frame'))==int and 0<=data['poster_frame']<total,'E_FRAME','invalid poster_frame')
     require(re.fullmatch(r'#[0-9a-fA-F]{6}',data.get('background','#F8F4EA')),'E_COLOR','background')
+    if data.get('soundtrack'):
+        import soundtrack
+        soundtrack.validate(data,root)
+    if data.get('profile')=='academic':
+        from academic_delivery import validate_course
+        validate_course(data)
+    performance='performance' in data
+    data=resolved(data)
     c=concept(data); entity_ids={e['id'] for e in c['entities']}
     assets=data.get('assets',[])
     require(isinstance(assets,list) and 1<=len(assets)<=40,'ASSET_BLOCKED','generate topic-specific artwork first')
@@ -180,7 +217,8 @@ def validate(data, root):
     consent=data.get('reuse_consent',{})
     for asset in assets:
         require(isinstance(asset,dict),'E_ASSET','asset object required')
-        aid=asset.get('id'); require(aid in entity_ids,'E_ASSET','asset must map to a technical entity: '+str(aid))
+        aid=asset.get('id'); require(isinstance(aid,str) and re.fullmatch(r'[A-Za-z][\w-]{0,59}',aid,re.ASCII),'E_ID','invalid asset ID')
+        require(asset.get('entity',aid) in entity_ids,'E_ASSET','asset must map to a technical entity: '+str(aid))
         require(aid not in seen,'E_ID','duplicate asset '+aid); seen.append(aid)
         require(asset.get('role') in ('subject','prop','background'),'E_ART','invalid role')
         p=local(root,asset.get('path')); require(p.stat().st_size<=30_000_000,'E_ASSET','asset too large')
@@ -201,6 +239,9 @@ def validate(data, root):
                 meta[aid]={'size':list(im.size),'alpha_box':list(box),'format':im.format}
         except Problem:raise
         except Exception as exc:fail('E_ASSET',f'{p.name}: {exc}')
+    if performance:
+        from perform_core import validate_registration
+        validate_registration(data,meta)
     shots=data.get('shots',[]); require(isinstance(shots,list) and shots,'E_TIMELINE','shots required')
     end=0; shot_ids=set()
     for shot in shots:
@@ -213,17 +254,31 @@ def validate(data, root):
         require(all(type(f)==int and shot['start']<=f<shot['end'] for f in shot.get('critical_frames',[])),'E_FRAME','critical frame outside shot')
     require(end==total,'E_TIMELINE','shots do not cover duration')
     layers=data.get('layers',[]);require(isinstance(layers,list) and 1<=len(layers)<=80,'E_LAYER','1..80 layers required')
-    layer_ids={'stage','toggle','seek','clock'}
+    layer_ids={'stage','toggle','seek','clock','_title','_description','_caption'}
     for l in layers:
         string(l.get('id'),'layer.id',60); require(re.fullmatch(r'[A-Za-z][\w-]*',l['id'],re.ASCII) and l['id'] not in layer_ids,'E_ID','duplicate or invalid layer ID'); layer_ids.add(l['id'])
-        allowed_layer={'id','type','asset','slot','start','end','keys','scale','rotate','opacity','text','size','color','points','stroke_width'}
+        allowed_layer={'id','type','asset','slot','start','end','keys','scale','rotate','opacity','text','size','color','points','stroke_width','box','pivot','image_size','asset_keys','purpose'}
         require(not set(l)-allowed_layer,'E_FIELD','unknown layer field')
+        require(l.get('purpose','subject') in ('subject','mechanism','label','narration','decoration','camera'),'E_PURPOSE','classify layer purpose without hiding the mechanism')
         typ=l.get('type','image');require(typ in ('image','text','path'),'E_LAYER','image/text/path only')
         require(l.get('slot','center') in SLOTS or typ=='text' and l.get('slot') in TEXT_SLOTS,'E_SLOT','invalid slot')
         a,b=l.get('start',0),l.get('end',total);require(type(a)==int and type(b)==int and 0<=a<b<=total,'E_FRAME','layer visibility')
         for k,lo,hi in [('scale',.01,3),('rotate',-180,180),('opacity',0,1)]:
             number(l.get(k,1 if k!='rotate' else 0),k,lo,hi)
-        if typ=='image':require(l.get('asset') in meta,'E_ART','unknown layer asset')
+        if typ=='image':
+            require(l.get('asset') in meta,'E_ART','unknown layer asset')
+            if 'image_size' in l:require(l['image_size']==meta[l['asset']]['size'],'E_REGISTRATION','image_size differs from actual asset')
+            prev=-1
+            for k in l.get('asset_keys',[]):
+                require(isinstance(k,dict) and set(k)=={'frame','asset'} and type(k['frame']) is int and prev<k['frame']<total and k['asset'] in meta,'E_STATE_ART','invalid image state key')
+                require(meta[k['asset']]['size']==meta[l['asset']]['size'],'E_REGISTRATION','state artboards must match')
+                prev=k['frame']
+        if 'box' in l:
+            require(isinstance(l['box'],list) and len(l['box'])==4,'E_LAYER','box [x,y,w,h]')
+            for i,v in enumerate(l['box']):number(v,'box',-.5 if i<2 else .01,1.5)
+        if 'pivot' in l:
+            require(isinstance(l['pivot'],list) and len(l['pivot'])==2,'E_PORT','pivot [x,y]')
+            for v in l['pivot']:number(v,'pivot',0,1)
         if typ=='text':string(l.get('text'),'layer.text',42);number(l.get('size',32),'text.size',18,84)
         if typ=='path':
             pts=l.get('points',[]);require(isinstance(pts,list) and 2<=len(pts)<=24,'E_PATH','2..24 points required')
@@ -231,19 +286,22 @@ def validate(data, root):
                 require(isinstance(p,list) and len(p)==2,'E_PATH','point [x,y]'); [number(x,'point',0,1) for x in p]
             number(l.get('stroke_width',4),'stroke_width',1,12)
         require(re.fullmatch(r'#[0-9a-fA-F]{6}',l.get('color','#263748')),'E_COLOR','layer.color')
-        keys=l.get('keys',[]);require(isinstance(keys,list) and len(keys)<=40,'E_TRACK','invalid keys')
+        keys=l.get('keys',[]);require(isinstance(keys,list) and len(keys)<=1024,'E_TRACK','invalid keys')
         if typ=='path':
             require(all(not set(k)-{'frame','opacity'} for k in keys),'E_TRACK','paths currently support visibility/opacity only; do not silently discard transforms')
         last=-1
         for key in keys:
-            require(isinstance(key,dict) and not set(key)-{'frame','slot','scale','rotate','opacity'},'E_FIELD','invalid keyframe')
+            require(isinstance(key,dict) and not set(key)-{'frame','slot','scale','rotate','opacity','x','y','ease'},'E_FIELD','invalid keyframe')
             require(type(key.get('frame'))==int and last<key['frame']<total,'E_TRACK','key frames must increase');last=key['frame']
+            if 'ease' in key:require(key['ease'] in ('linear','smooth'),'E_TRACK','unsupported easing')
+            for pos in ('x','y'):
+                if pos in key:number(key[pos],pos,-8192,8192)
             if 'slot' in key:require(key['slot'] in SLOTS,'E_SLOT','invalid keyframe slot')
             for k,lo,hi in [('scale',.01,3),('rotate',-180,180),('opacity',0,1)]:
                 if k in key:number(key[k],k,lo,hi)
     sample_frames=frames(data) if any(x in fmt for x in ('html','video')) else [data['poster_frame']]
     for f in sample_frames: layout(data,meta,f)
-    if any(f in fmt for f in ('html','video')):
+    if not performance and any(f in fmt for f in ('html','video')):
         for shot in shots:
             holding = shot == shots[-1] and shot['action']=='resolve' and (shot['end']-shot['start']) <= 2*data['fps']
             require(holding or any(l.get('type','image')=='image' and l.get('asset') in shot['asset_ids'] and
@@ -271,16 +329,24 @@ def layout(data,meta,frame):
         s=layer_state(l,frame,data)
         if s['opacity']<.5:continue
         typ=l.get('type','image')
-        if typ=='image' and assets[l['asset']]['role']!='background':
-            size=meta[l['asset']]['size']; b=meta[l['asset']]['alpha_box']
+        if typ=='image' and assets[s['asset']]['role']!='background':
+            size=meta[s['asset']]['size']; b=meta[s['asset']]['alpha_box']
             fit=min(s['width']/size[0],s['height']/size[1])*s['scale']
+            if data.get('compiled_rigs'):
+                # Check actual registered silhouette corners, including articulated pivots.
+                angle=math.radians(s['rotate']);co,si=math.cos(angle),math.sin(angle)
+                px,py=s['pivot_x']*s['scale'],s['pivot_y']*s['scale'];corners=[]
+                for xx,yy in ((b[0],b[1]),(b[2],b[1]),(b[0],b[3]),(b[2],b[3])):
+                    lx=(xx-size[0]/2)*fit;ly=(yy-size[1]/2)*fit
+                    corners.append((s['x']+px+co*(lx-px)-si*(ly-py),s['y']+py+si*(lx-px)+co*(ly-py)))
+                require(all(-2<=x<=W+2 and -2<=y<=H+2 for x,y in corners),'E_STAGE_BOUNDS',f'frame {frame}, layer {l["id"]}: moving artwork is clipped; reposition its rig or revise the verified hinge')
             w,h=(b[2]-b[0])*fit,(b[3]-b[1])*fit
             # Conservative inscribed box for rotated silhouettes, not a claim about pixel-level occlusion.
             factor=1/(abs(math.cos(math.radians(s['rotate'])))+abs(math.sin(math.radians(s['rotate']))))
             w*=factor;h*=factor
             cx=s['x']+((b[0]+b[2])/2-size[0]/2)*fit;cy=s['y']+((b[1]+b[3])/2-size[1]/2)*fit
             r=(max(0,cx-w/2),max(0,cy-h/2),min(W,cx+w/2),min(H,cy+h/2))
-            if r[2]>r[0] and r[3]>r[1]:rects.append(r);used.add(l['asset'])
+            if r[2]>r[0] and r[3]>r[1]:rects.append(r);used.add(s['asset'])
         if typ=='text':
             size=l.get('size',32)*s['scale']; width=sum(1 if ord(c)>255 else .62 for c in l['text'])*size
             text_area+=width*size*1.25
