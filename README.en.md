@@ -1,6 +1,6 @@
 # How It Moves
 
-**Models supply content. Recipes supply the animation.**
+**Topic-specific artwork, causal motion, and HTML / MP4 / SVG delivery.**
 
 [中文](README.md) · [Original interactive demo](docs/index.html) · [Recipe gallery](docs/recipes/index.html) · [Skill](technical-animation/SKILL.md) · [MIT](LICENSE)
 
@@ -9,6 +9,26 @@
 Click an animation to open its interactive preview, with playback, pause, and frame-by-frame seeking.
 
 [Original 1080p60 MP4](docs/media/agent-loop-10s.mp4)
+
+## v0.6 · Topic-specific artwork and multiple output formats
+
+Design three visual worlds for each new topic, then use the host's image-generation tool to create project-specific subjects and movable parts. Historical props are references, not the default asset library for new subjects.
+
+Choose offline interactive **HTML**, silent **MP4**, or a static layered **SVG** with editable text/paths and embedded raster artwork. SVG is hybrid, not pure vector. All formats share the scene contract and require explicit visual review; source, asset or exporter changes invalidate approval.
+
+```bash
+python3 technical-animation/scripts/create.py init --topic "Mechanism to explain" --formats html svg --out work/my-topic
+python3 technical-animation/scripts/create.py prompts work/my-topic --out work/my-topic/generation-briefs.md
+# Generate real artwork through the host and complete story.json.
+python3 technical-animation/scripts/create.py check work/my-topic
+python3 technical-animation/scripts/create.py review work/my-topic --folder review-v1
+# Inspect the artwork and motion, then record per-shot findings.
+python3 technical-animation/scripts/create.py export work/my-topic --formats html svg --review work/my-topic/review-v1/review.json --out build/my-topic-v1
+```
+
+[Output formats](technical-animation/references/output-formats.md) · [Topic design](technical-animation/references/topic-design.md) · [Production contract](technical-animation/references/production-contract.md)
+
+The host must provide image generation and visual inspection. Tests use synthetic fixtures and do not demonstrate artwork quality. Existing demos below are preserved v0.1–v0.4 examples, not v0.6 artwork evaluations.
 
 <!-- ILLUSTRATED-STUDIO:BEGIN -->
 ## v0.4 · Physical comic assets, content-only authoring
@@ -73,7 +93,7 @@ The DeepSeek [editable project](technical-animation/examples/deepseek-plugins/) 
 
 ## What changed
 
-v0.1 asked the host agent to design and implement `scene.mjs`. v0.2 defaults to bounded recipes: choose the right mechanism and edit a small JSON document. The compiler supplies layout, layered vector assets, articulated motions, integer-frame event scheduling, captions, and the final two-second reading hold.
+v0.1 asked the host agent to design and implement `scene.mjs`. The historical v0.2 path uses bounded recipes: choose the right mechanism and edit a small JSON document. The compiler supplies layout, layered vector assets, articulated motions, integer-frame event scheduling, captions, and the final two-second reading hold.
 
 This removes model responsibility for animation engineering **inside supported mechanisms**. It does not make a model understand unfamiliar technology, prove factual statements, execute actual tools, or guarantee educational quality. No weaker-model benchmark or audience study has been performed; see [evaluation protocol](technical-animation/evals/README.md).
 
@@ -131,7 +151,7 @@ Back up/merge an existing installation. A host must have local file and command 
 Prompt:
 
 ```text
-Use technical-animation in default recipe mode for a 12-second RAG explainer.
+Use technical-animation in explicitly requested legacy recipe mode for a 12-second RAG explainer.
 Show query, selected evidence, context and cited answer. 16:9, comic-lab, silent.
 Read the recipe guide, copy retrieval-evidence JSON, edit content only.
 Do not write Canvas, coordinates, easing or a new scene.mjs.

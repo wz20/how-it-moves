@@ -4,7 +4,7 @@
 
 ### 让动作讲清技术，而不是让文字动起来。
 
-**模型填内容，配方管动画。默认配方模式 + 高级自由创作。**
+**为主题设计素材，让过程变成动画与插画。支持 HTML / MP4 / SVG。**
 
 [English](README.en.md) · [原版交互动画](https://wz20.github.io/how-it-moves/) · [三套配方演示](docs/recipes/index.html) · [Skill](technical-animation/SKILL.md) · [MIT](LICENSE)
 
@@ -16,7 +16,29 @@
 
 点击动画可打开交互预览，支持播放、暂停和逐帧拖动。
 
-## v0.3：从动态流程图，到有观察重点的多镜头讲解
+## v0.6 · 按主题生图，按需要交付
+
+每个新主题先理解机制、构思三套视觉世界，再通过宿主生图工具生成本项目的主体和可动部件。旧案例用于参考，不再默认把机器人、终端或柜子换标签套到新主题。
+
+- **HTML**：嵌入素材的离线交互动画，支持播放、暂停和逐帧拖动。
+- **MP4**：与 HTML 共用素材、对象和时间线；当前视频输出为无声。
+- **SVG**：分层静态说明图，含可编辑文字、路径和嵌入图片，不是纯矢量。
+
+```bash
+python3 technical-animation/scripts/create.py init --topic "要讲解的机制" --formats html svg --out work/my-topic
+# 填写主题构思与分镜，通过宿主生图工具生成素材并登记来源
+python3 technical-animation/scripts/create.py prompts work/my-topic --out work/my-topic/generation-briefs.md
+python3 technical-animation/scripts/create.py check work/my-topic
+python3 technical-animation/scripts/create.py review work/my-topic --folder review-v1
+# 实际看图、检查动作后，填写逐镜审阅结果
+python3 technical-animation/scripts/create.py export work/my-topic --formats html svg --review work/my-topic/review-v1/review.json --out build/my-topic-v1
+```
+
+[输出格式](technical-animation/references/output-formats.md) · [主题设计](technical-animation/references/topic-design.md) · [数据合同](technical-animation/references/production-contract.md)
+
+需要宿主提供生图和视觉审阅能力；初始化与测试不会自动生成真实艺术素材。素材、时间线或导出器变更会使审片记录失效。下方保留的演示来自 v0.1–v0.4，不代表 v0.6 新主题生图的美术验收结果。
+
+## 历史 v0.3：从动态流程图，到有观察重点的多镜头讲解
 
 新增**内容驱动的导演路径**：普通模型填短文案和候选数据，不写 Canvas、镜头坐标或缓动。固定的机制合同与镜头运行库共同保证对象身份、动作先后和读图顺序；不替换已有三个配方或 DeepSeek 演示。
 
@@ -102,7 +124,7 @@ DeepSeek 示例的[可修改工程](technical-animation/examples/deepseek-plugin
 
 上一版让宿主 Agent 自己设计分镜并编写 `scene.mjs`，因此很依赖模型的动画编码与审美能力。
 
-现在默认让模型**选择机制配方、填写少量 JSON 内容**。原创矢量角色、素材分层、构图、路径、动作、整数帧排期和结尾停留由代码生成，不再要求普通模型重新发明一套动画。
+历史 v0.2 配方路径让模型**选择机制配方、填写少量 JSON 内容**。原创矢量角色、素材分层、构图、路径、动作、整数帧排期和结尾停留由代码生成，不再要求普通模型重新发明一套动画。
 
 ```text
 用户主题 + 可靠资料
@@ -190,7 +212,7 @@ python3 technical-animation/scripts/recipe.py build \
 安装后把这段发给模型：
 
 ```text
-使用 technical-animation 的默认配方模式，制作 RAG 讲解动画。
+明确复用历史案例时，使用 technical-animation 的配方模式，制作 RAG 讲解动画。
 只讲：先检索相关证据，再把问题和证据交给模型，最后带引用回答。
 采用内置 comic-lab，16:9，12 秒，完全无声。
 
@@ -251,7 +273,7 @@ python3 scripts/check_release.py
 
 [本版实测记录](release-checks/v0.2/README.md) · [模型评测协议](technical-animation/evals/README.md)。通过本地测试不等于已经在不同模型、不同操作系统或真实受众上证明稳定性。
 
-GIF 为压缩预览，高清动画可下载 MP4。默认风格为原创漫画技术解说，不复制其他创作者的角色、标识或视频素材，不声称得到创作者背书。
+GIF 为压缩预览，高清动画可下载 MP4。历史案例风格为原创漫画技术解说，不复制其他创作者的角色、标识或视频素材，不声称得到创作者背书。
 
 MIT 许可覆盖本项目原创代码、文档、矢量角色及示例；第三方依赖遵循各自许可证。无字体、个人照片、API key 或浏览器二进制。见 [NOTICE](NOTICE.md)、[贡献指南](CONTRIBUTING.md)、[安全说明](SECURITY.md)。
 

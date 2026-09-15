@@ -1,3 +1,11 @@
+# How It Moves v0.6
+
+新任务使用 [Skill 入口](SKILL.md) 和 `scripts/create.py`。支持按主题生图后输出 HTML、MP4 与混合分层 SVG。
+
+历史脚本与示例继续保留，参见 [仓库说明](../README.md)。
+
+## 历史版本说明
+
 # technical-animation v0.2
 
 给编程 Agent 的漫画技术动画 Skill。默认配方模式，完整入口见 [SKILL.md](SKILL.md)。

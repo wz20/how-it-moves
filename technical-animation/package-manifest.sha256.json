@@ -1,0 +1,14 @@
+{
+  "LICENSE": "e7c79edcdb8ae1c94c65e0f0b578dee89ecc0070824b3e2be2213e5f87453af3",
+  "SKILL.md": "b6a1bd9de15a3c3322d102d03447a6407ac815659f8f0a371bd22aa661303b99",
+  "references/output-formats.md": "1d7fd71306a178d8a1c57205bc83ce24c77e997103d16e4b44a52de966b30c3e",
+  "references/production-contract.md": "efb19c6edc72018472a1d4a84b2e627f65d0bba0eb4f1427ae95041077dcda57",
+  "references/topic-design.md": "e42836f1b13cc8dd21a1cf13c1ccac8a175918597a3e2acc913979e9dc12d64c",
+  "requirements.txt": "490f1b6412faf9b07a86a350c3bf8927fb6c4934cd9e8aff7e2a41cdc074c9fe",
+  "runtime/topic-player.js": "c979e9c831b0720b3eac8bc02921b9925c5f83bc29c5447084ae42383ff3b689",
+  "scripts/create.py": "a2bf062a6bfce1fc59058e89bbc37303138c9fa7b22fd64f87e91f9ea8ee8025",
+  "scripts/topic_model.py": "231f42fe904fbdbbb7381b6e6c841887f3e074c11df60bf34a2ff1f29561a754",
+  "scripts/topic_output.py": "a5323b6a7069e2d13d3598d86d10b29fe22515ae686216c5d95481abf2b42cbc",
+  "tests/check_topic_browser.py": "4d9506421b1459ffca40af3957d53eca6ec6109534388c3e233eb1355ce6a3d7",
+  "tests/test_topic_outputs.py": "fa046913864f281aebca0bedaa2e9aba300d53f93d283ee25d28a9f37af6b1fa"
+}

@@ -1,3 +1,11 @@
+# v0.6.0
+
+- Add topic-specific visual design, asset provenance and reuse validation.
+- Add create.py init/prompts/check/review/export workflow.
+- Support offline HTML, silent MP4 and layered hybrid SVG.
+- Invalidate review when sources, assets or exporter change.
+- Preserve historical runtimes and all existing showcases.
+
 # v0.2.0 — 2026-09-14
 
 - Added default recipe mode and strict content-only JSON compiler; retained advanced freeform authoring.
